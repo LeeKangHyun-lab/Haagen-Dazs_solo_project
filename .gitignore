@@ -1,0 +1,13 @@
+# 가상환경 무시
+venv310/
+
+# Python 캐시 무시
+__pycache__/
+*.pyc
+
+# 결과물 엑셀 파일 무시
+*.xlsx
+
+# 로그/백업 등 무시하고 싶은 파일 추가
+*.log
+backup_partial.xlsx
