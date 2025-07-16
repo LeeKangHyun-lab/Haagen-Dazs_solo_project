@@ -7,8 +7,8 @@
 
 ### Frontend
 - HTML5
-- CSS3 (하겐다즈 무드 색상 및 타이포그래피 적용)
-- JavaScript (Vanilla JS)
+- CSS3 
+- JavaScript 
 - AJAX (XHR 또는 Fetch API)
 
 ### Backend
