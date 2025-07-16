@@ -135,8 +135,13 @@ html, body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  overflow-y: auto;
+  height: 100%;
 }
 
+.main{
+  overflow: visible;
+}
 .main-slider {
   width: 100vw;             
   height: 400px;            
@@ -167,3 +172,20 @@ html, body {
 }
 
 
+.recommand-text{
+  font-size: 28px;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.recommand{
+  display: flex;
+  justify-content: center;
+  gap:30px;
+}
+
+.recommand:hover{
+
+}
