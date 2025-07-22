@@ -189,3 +189,53 @@ html, body {
 .recommand:hover{
 
 }
+
+.video-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 80px;
+  padding: 80px 100px;
+  background-color: #f6e7d5;
+  margin-top: 100px;
+  margin-bottom: 200px;
+}
+
+.campaign-text {
+  flex: 1;
+  text-align: center;
+  margin-right: 300px;
+}
+
+.campaign-text h2 {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.campaign-text p {
+  font-size: 18px;
+  color: #333;
+}
+
+.underline {
+  width: 250px;
+  height: 1px;
+  background-color: #000;
+  border: none;
+  margin-bottom: 20px;
+}
+
+.campaign-media {
+  flex: 2;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.campaign-media iframe {
+  width: 100%;
+  max-width: 900px;
+  aspect-ratio: 16/9;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
