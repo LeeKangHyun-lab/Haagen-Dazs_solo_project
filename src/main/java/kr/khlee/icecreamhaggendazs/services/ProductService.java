@@ -9,4 +9,6 @@ public interface ProductService {
     public List<Product> SelectRecommandation();
 
     public List<Product> SelectAllProducts();
+
+    public Product SelectById(int id);
 }

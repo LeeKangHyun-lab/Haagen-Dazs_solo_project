@@ -30,4 +30,11 @@ public class productServiceTest {
         log.info(products.toString());
     }
 
+    @Test
+    void selectById() throws Exception{
+        Product product = productService.SelectById(1);
+
+        log.info(product.toString());
+    }
+
 }

@@ -13,4 +13,5 @@ public class Product {
     String imageUrl;
     String category;
     String createdAt;
+    String detailImageUrl;
 }

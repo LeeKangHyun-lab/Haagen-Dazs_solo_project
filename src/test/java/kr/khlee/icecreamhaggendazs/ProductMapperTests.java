@@ -30,4 +30,11 @@ public class ProductMapperTests {
 
         log.info(products.toString());
     }
+
+    @Test
+    void SelectById(){
+        Product product = productMapper.SelectById(1);
+
+        log.info(product.toString());
+    }
 }

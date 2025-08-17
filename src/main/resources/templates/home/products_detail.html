@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <th:block th:replace="~{_fragments/_head :: my-head('상품상세')}" />
+  <link rel="stylesheet" th:href="@{/assets/css/main.css}" />
+</head>
+<body>
+<th:block th:replace="~{_fragments/header}" />
+
+<main>
+  <div class="product-detail">
+    <!-- 왼쪽: 상품 이미지 -->
+    <div class="product-image">
+      <img th:src="${product.imageUrl}" th:alt="${product.name}">
+    </div>
+
+    <!-- 오른쪽: 상품 정보 -->
+    <div class="product-detail-info">
+      <h2 th:text="${product.name}">하겐다즈 샌드위치 말차베리 (3입)</h2>
+
+      <div class="info-row">
+        <span class="label">소비자가</span>
+        <span class="original" th:text="|₩${product.originalPrice}|">₩17,900</span>
+      </div>
+
+      <div class="info-row">
+        <span class="label">판매가</span>
+        <span class="sale" th:text="|₩${product.price}|">₩17,900</span>
+      </div>
+
+      <div class="info-row">
+        <span class="label">택배배송</span>
+        <span>₩4,000 <small>(₩30,000 이상 구매 시 무료)</small></span>
+      </div>
+
+      <div class="info-row quantity">
+        <span class="label">상품수량</span>
+        <div class="quantity-controls">
+          <button type="button">-</button>
+          <input type="text" value="1">
+          <button type="button">+</button>
+        </div>
+      </div>
+
+      <div class="total">
+        총 상품금액: <span th:text="|₩${product.price}|">₩17,900</span>
+      </div>
+
+      <div class="actions">
+        <button class="buy-now">바로구매</button>
+        <button class="cart">장바구니</button>
+        <button class="wishlist">위시리스트</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+<th:block th:replace="~{_fragments/footer}" />
+</body>
+</html>

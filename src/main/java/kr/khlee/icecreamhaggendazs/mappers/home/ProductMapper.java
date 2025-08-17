@@ -20,4 +20,18 @@ public interface ProductMapper {
             "products")
     @Results(id = "SelectAll")
     public List<Product> SelectAllProducts();
+
+    @Select("<script>" +
+            "SELECT name, size, " +
+            "price, original_price, description, " +
+            "image_url, category, " +
+            "created_at detail_image1 " +
+            "FROM products " +
+            "<where>" +
+            "id = #{id} " +
+            "</where>" +
+            "</script>")
+    @Results(id = "selectById")
+    public Product SelectById(int id);
+
 }

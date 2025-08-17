@@ -27,4 +27,9 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> SelectAllProducts() {
         return productMapper.SelectAllProducts();
     }
+
+    @Override
+    public Product SelectById(int id) {
+        return productMapper.SelectById(id);
+    }
 }

@@ -11,6 +11,10 @@ body {
   padding: 0 20px;
 }
 
+.hd-header {
+  position: relative;
+  z-index: 9999;
+}
 
 .hd-topbar {
   background-color: #f5f5f5;
@@ -114,26 +118,76 @@ body {
   display: flex;
   gap: 66px;
   white-space: nowrap;      /* 줄바꿈 방지 */
-  overflow-x: auto;         /* 필요 시 가로 스크롤 허용 */
+  overflow-x: visible;         /* 필요 시 가로 스크롤 허용 */
 }
 
 
-.hd-gnb a {
-  flex-shrink: 0;           /* 크기 줄어들지 않도록 */
-  color: white;
-  font-weight: bold;
-  text-decoration: none;
-  font-size: 15px;
-}
-
-.hd-gnb a:hover {
-  color: #ffdce5;
-}
+/*.hd-gnb a {*/
+/*  flex-shrink: 0;           !* 크기 줄어들지 않도록 *!*/
+/*  color: white;*/
+/*  font-weight: bold;*/
+/*  text-decoration: none;*/
+/*  font-size: 15px;*/
+/*}*/
 
 
 .hd-gnb::-webkit-scrollbar {
   display: none;            /* 스크롤바 숨김 (선택) */
 }
+
+/* 기본 메뉴 */
+.hd-gnb ul {
+  display: flex;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.hd-gnb > ul > li {
+  position: relative;
+}
+.hd-gnb > ul > li > a {
+  color: #fff;
+  font-weight: bold;
+  padding: 15px 10px;
+  display: block;
+  text-decoration: none;
+}
+
+/* 2차 메뉴 (아래쪽 전체 폭) */
+/* 서브바 기본 숨김 */
+.subbar {
+  display: none;
+  position: absolute;
+  top: 100%;
+  background: #fff;
+  border-top: 1px solid #ddd;
+  z-index: 9999;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-top: 8px;
+}
+
+.subbar a {
+  margin: 0 20px;
+  color: #777;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.subbar a:hover {
+  color: #660828;
+}
+
+/* 메뉴 hover 시 열림 */
+.has-sub {
+  position: absolute;
+}
+.has-sub:hover .subbar {
+  display: block;
+}
+
+
 
 
 .nav-right {
@@ -353,7 +407,7 @@ html, body {
 }
 
 
-
+/*동영상 부분*/
 .video-main {
   display: flex;
   justify-content: space-between;
@@ -401,6 +455,8 @@ html, body {
   border-radius: 10px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
+
+/*footer*/
 .hd-footer {
   background: #f5f5f5;
   padding: 30px 0;
@@ -462,4 +518,111 @@ html, body {
   padding: 10px;
   font-size: 12px;
   margin-top: 20px;
+}
+
+/*삼품 상세 정보*/
+.product-detail {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 50px auto;
+  gap: 60px;
+}
+
+.product-image img {
+  width: 420px;
+  border-radius: 10px;
+  border: 1px solid #eee;
+}
+
+.product-detail-info {
+  flex: 1;
+}
+
+.product-detail-info h2 {
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+/* 정보 라인 */
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 15px;
+}
+.info-row .label {
+  color: #555;
+  min-width: 100px;
+}
+.original {
+  text-decoration: line-through;
+  color: #999;
+}
+.sale {
+  color: #660828;
+  font-weight: bold;
+}
+
+/* 수량 */
+.quantity .quantity-controls {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.quantity-controls button {
+  width: 35px;
+  height: 35px;
+  border: none;
+  background-color: #f5f5f5;
+  cursor: pointer;
+}
+.quantity-controls input {
+  width: 50px;
+  text-align: center;
+  border: none;
+  font-size: 15px;
+}
+
+/* 총 상품금액 */
+.total {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 25px 0;
+  color: #660828;
+}
+
+/* 버튼 */
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+.actions button {
+  flex: 1;
+  padding: 16px 0;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.buy-now {
+  background-color: #660828;
+  color: white;
+}
+.cart {
+  background-color: black;
+  color: white;
+}
+.wishlist {
+  background-color: #eee;
+  color: #333;
 }
