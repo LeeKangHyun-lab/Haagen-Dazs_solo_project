@@ -3490,3 +3490,110 @@ WHERE EXPIRY_TIME < 1755403500018
 [INFO ] 25-08-17 13:06:00 [sqlonly:228] - DELETE FROM SPRING_SESSION
 WHERE EXPIRY_TIME < 1755403560035
 
+[INFO ] 25-08-17 13:06:56 [IceCreamHaggenDazsApplication:53] - Starting IceCreamHaggenDazsApplication using Java 17.0.2 with PID 12740 (D:\web_backend_class\personal_project\iceCreamHaggenDazs\build\classes\java\main started by ka090 in D:\web_backend_class\personal_project\iceCreamHaggenDazs)
+[DEBUG] 25-08-17 13:06:56 [IceCreamHaggenDazsApplication:54] - Running with Spring Boot v3.5.4, Spring v6.2.9
+[INFO ] 25-08-17 13:06:56 [IceCreamHaggenDazsApplication:652] - No active profile set, falling back to 1 default profile: "default"
+[INFO ] 25-08-17 13:07:01 [IceCreamHaggenDazsApplication:59] - Started IceCreamHaggenDazsApplication in 6.027 seconds (process running for 7.345)
+[DEBUG] 25-08-17 13:07:14 [SelectRecommandation:135] - ==>  Preparing: SELECT name, original_price, price ,image_url FROM products LIMIT 0, 4
+[DEBUG] 25-08-17 13:07:14 [SelectRecommandation:135] - ==> Parameters: 
+[INFO ] 25-08-17 13:07:14 [sqlonly:228] - SELECT name, original_price, price ,image_url FROM products LIMIT 0, 4
+
+[INFO ] 25-08-17 13:07:14 [resultsettable:610] - 
+|---------------------------|---------------|------|-------------------------------------------------------------------------------------------|
+|name                       |original_price |price |image_url                                                                                  |
+|---------------------------|---------------|------|-------------------------------------------------------------------------------------------|
+|하겐다즈 샌드위치 말차베리 (3입)        |17900          |17900 |https://haagendazs-store.co.kr/web/product/big/202506/054b62822b9a17f028e97472c90ee48a.png |
+|하겐다즈 마드리드 츄로스 (미니컵) 100ml  |6900           |6900  |https://haagendazs-store.co.kr/web/product/big/202504/cec28f1e178ef60130079026e21f5860.jpg |
+|하겐다즈 로마 티라미수 (미니컵) 100ml   |6900           |6900  |https://haagendazs-store.co.kr/web/product/big/202504/08ceaceaeffb3126461a8ec4c5bf2d35.jpg |
+|하겐다즈 블루베리 앤 크림 (파인트) 473ml |17900          |17900 |https://haagendazs-store.co.kr/web/product/big/202504/64e4455a004257bce7c348f21d22b278.png |
+|---------------------------|---------------|------|-------------------------------------------------------------------------------------------|
+
+[DEBUG] 25-08-17 13:07:14 [SelectRecommandation:135] - <==      Total: 4
+[DEBUG] 25-08-17 13:07:16 [SelectAllProducts:135] - ==>  Preparing: SELECT * FROM products
+[DEBUG] 25-08-17 13:07:16 [SelectAllProducts:135] - ==> Parameters: 
+[INFO ] 25-08-17 13:07:16 [sqlonly:228] - SELECT * FROM products
+
+[INFO ] 25-08-17 13:07:16 [resultsettable:610] - 
+|---|--------------------------------|------|------|---------------|----------------------------|-------------------------------------------------------------------------------------------|---------|--------------------|---------------|--------------|
+|id |name                            |size  |price |original_price |description                 |image_url                                                                                  |category |created_at          |detailimageurl |detail_image1 |
+|---|--------------------------------|------|------|---------------|----------------------------|-------------------------------------------------------------------------------------------|---------|--------------------|---------------|--------------|
+|1  |하겐다즈 샌드위치 말차베리 (3입)             |3개입   |17900 |17900          |크리스피 샌드위치 말차베리 아이스크림 (한정판)  |https://haagendazs-store.co.kr/web/product/big/202506/054b62822b9a17f028e97472c90ee48a.png |샌드       |2025-08-14 15:00:54 |null           |[null]        |
+|2  |하겐다즈 마드리드 츄로스 (미니컵) 100ml       |100ml |6900  |6900           |하겐다즈 마드리드 츄로스 아이스크림         |https://haagendazs-store.co.kr/web/product/big/202504/cec28f1e178ef60130079026e21f5860.jpg |미니컵      |2025-08-14 15:03:22 |null           |[null]        |
+|3  |하겐다즈 로마 티라미수 (미니컵) 100ml        |100ml |6900  |6900           |하겐다즈 로마 티라미수 아이스크림          |https://haagendazs-store.co.kr/web/product/big/202504/08ceaceaeffb3126461a8ec4c5bf2d35.jpg |미니컵      |2025-08-14 15:04:03 |null           |[null]        |
+|4  |하겐다즈 블루베리 앤 크림 (파인트) 473ml      |473ml |17900 |17900          |하겐다즈 블루베리 앤 크림 아이스크림        |https://haagendazs-store.co.kr/web/product/big/202504/64e4455a004257bce7c348f21d22b278.png |파인트      |2025-08-14 15:05:12 |null           |[null]        |
+|5  |하겐다즈 로마 티라미수 (파인트) 403ml        |403ml |17900 |17900          |하겐다즈 로마 티라미수 아이스크림          |https://haagendazs-store.co.kr/web/product/big/202504/d08e7ed7b1190472ef19e76cffe3ddf1.jpg |파인트      |2025-08-14 15:05:12 |null           |[null]        |
+|6  |하겐다즈 마드리드 츄로스 (파인트) 403ml       |403ml |17900 |17900          |하겐다즈 마드리드 츄로스 아이스크림         |https://haagendazs-store.co.kr/web/product/big/202504/6257c28078962551fcef13b777279658.jpg |파인트      |2025-08-14 15:05:12 |null           |[null]        |
+|7  |하겐다즈 로마 티라미수 (스틱바) 80ml         |80ml  |6900  |6900           |하겐다즈 로마 티라미수 스틱바 아이스크림      |https://haagendazs-store.co.kr/web/product/big/202504/f2c53e6c5cb0ce189cf348eb820bd007.jpg |스틱바      |2025-08-14 15:05:12 |null           |[null]        |
+|8  |하겐다즈 망고&패션후르츠 (스틱바) 80ml        |80ml  |6900  |6900           |하겐다즈 망고&패션후르츠 스틱바 아이스크림     |https://haagendazs-store.co.kr/web/product/big/202503/fc9a13e73b322a6811c22540fdb52ee8.jpg |스틱바      |2025-08-14 15:08:45 |null           |[null]        |
+|9  |하겐다즈 피치&라즈베리 (스틱바) 80ml         |80ml  |6900  |6900           |하겐다즈 피치&라즈베리 스틱바 아이스크림      |https://haagendazs-store.co.kr/web/product/big/202503/1b27cf53d8ccd431357befeb1dacf24e.jpg |스틱바      |2025-08-14 15:08:45 |null           |[null]        |
+|10 |하겐다즈 마카롱 바닐라&블루베리 (스틱바) 80ml    |80ml  |6900  |6900           |하겐다즈 마카롱 바닐라&블루베리 스틱바 아이스크림 |https://haagendazs-store.co.kr/web/product/big/202404/d83de669cb4c422f74bf7cb2b247f5f9.jpg |스틱바      |2025-08-14 15:08:45 |null           |[null]        |
+|11 |하겐다즈 피스타치오 앤 크림 (미니컵) 100ml     |100ml |6900  |6900           |하겐다즈 피스타치오 앤 크림 아이스크림       |https://haagendazs-store.co.kr/web/product/big/202309/c1bb42296cb646d8f02f4852e892718d.jpg |미니컵      |2025-08-14 15:08:45 |null           |[null]        |
+|12 |하겐다즈 마카롱 스트로베리&라즈베리 (파인트) 403ml |403ml |17900 |17900          |하겐다즈 마카롱 스트로베리&라즈베리 아이스크림   |https://haagendazs-store.co.kr/web/product/big/202504/8d9c45e5cf25e3e7988713e64f2b1adf.jpg |파인트      |2025-08-14 15:08:45 |null           |[null]        |
+|13 |하겐다즈 마카롱 더블 초콜릿 가나슈 (파인트) 403ml |403ml |17900 |17900          |하겐다즈 마카롱 더블 초콜릿 가나슈 아이스크림   |https://haagendazs-store.co.kr/web/product/big/202504/d41d8f86e1c95562362ea63b3773a2ae.jpg |파인트      |2025-08-14 15:08:45 |null           |[null]        |
+|14 |하겐다즈 카라멜비스킷&크림 (파인트) 473ml      |473ml |15500 |15500          |하겐다즈 카라멜비스킷&크림 아이스크림        |https://haagendazs-store.co.kr/web/product/big/202308/d75e76b5084a3e83881f86b1786af879.jpg |파인트      |2025-08-14 15:08:45 |null           |[null]        |
+|15 |하겐다즈 커피 (파인트) 473ml             |473ml |17900 |17900          |하겐다즈 커피 아이스크림               |https://haagendazs-store.co.kr/web/product/big/202308/f04e1d4b26c64f4d66a438c95f4d9ffc.jpg |파인트      |2025-08-14 15:08:45 |null           |[null]        |
+|---|--------------------------------|------|------|---------------|----------------------------|-------------------------------------------------------------------------------------------|---------|--------------------|---------------|--------------|
+
+[DEBUG] 25-08-17 13:07:16 [SelectAllProducts:135] - <==      Total: 15
+[INFO ] 25-08-17 13:08:00 [sqlonly:228] - DELETE FROM SPRING_SESSION
+WHERE EXPIRY_TIME < 1755403680027
+
+[DEBUG] 25-08-17 13:08:19 [SelectRecommandation:135] - ==>  Preparing: SELECT name, original_price, price ,image_url FROM products LIMIT 0, 4
+[DEBUG] 25-08-17 13:08:19 [SelectRecommandation:135] - ==> Parameters: 
+[INFO ] 25-08-17 13:08:19 [sqlonly:228] - SELECT name, original_price, price ,image_url FROM products LIMIT 0, 4
+
+[INFO ] 25-08-17 13:08:19 [resultsettable:610] - 
+|---------------------------|---------------|------|-------------------------------------------------------------------------------------------|
+|name                       |original_price |price |image_url                                                                                  |
+|---------------------------|---------------|------|-------------------------------------------------------------------------------------------|
+|하겐다즈 샌드위치 말차베리 (3입)        |17900          |17900 |https://haagendazs-store.co.kr/web/product/big/202506/054b62822b9a17f028e97472c90ee48a.png |
+|하겐다즈 마드리드 츄로스 (미니컵) 100ml  |6900           |6900  |https://haagendazs-store.co.kr/web/product/big/202504/cec28f1e178ef60130079026e21f5860.jpg |
+|하겐다즈 로마 티라미수 (미니컵) 100ml   |6900           |6900  |https://haagendazs-store.co.kr/web/product/big/202504/08ceaceaeffb3126461a8ec4c5bf2d35.jpg |
+|하겐다즈 블루베리 앤 크림 (파인트) 473ml |17900          |17900 |https://haagendazs-store.co.kr/web/product/big/202504/64e4455a004257bce7c348f21d22b278.png |
+|---------------------------|---------------|------|-------------------------------------------------------------------------------------------|
+
+[DEBUG] 25-08-17 13:08:19 [SelectRecommandation:135] - <==      Total: 4
+[INFO ] 25-08-17 13:09:00 [sqlonly:228] - DELETE FROM SPRING_SESSION
+WHERE EXPIRY_TIME < 1755403740012
+
+[INFO ] 25-08-17 13:10:00 [sqlonly:228] - DELETE FROM SPRING_SESSION
+WHERE EXPIRY_TIME < 1755403800014
+
+[INFO ] 25-08-17 13:11:00 [sqlonly:228] - DELETE FROM SPRING_SESSION
+WHERE EXPIRY_TIME < 1755403860014
+
+[INFO ] 25-08-17 13:12:00 [sqlonly:228] - DELETE FROM SPRING_SESSION
+WHERE EXPIRY_TIME < 1755403920006
+
+[DEBUG] 25-08-17 13:12:50 [SelectAllProducts:135] - ==>  Preparing: SELECT * FROM products
+[DEBUG] 25-08-17 13:12:50 [SelectAllProducts:135] - ==> Parameters: 
+[INFO ] 25-08-17 13:12:50 [sqlonly:228] - SELECT * FROM products
+
+[INFO ] 25-08-17 13:12:50 [resultsettable:610] - 
+|---|--------------------------------|------|------|---------------|----------------------------|-------------------------------------------------------------------------------------------|---------|--------------------|---------------|--------------|
+|id |name                            |size  |price |original_price |description                 |image_url                                                                                  |category |created_at          |detailimageurl |detail_image1 |
+|---|--------------------------------|------|------|---------------|----------------------------|-------------------------------------------------------------------------------------------|---------|--------------------|---------------|--------------|
+|1  |하겐다즈 샌드위치 말차베리 (3입)             |3개입   |17900 |17900          |크리스피 샌드위치 말차베리 아이스크림 (한정판)  |https://haagendazs-store.co.kr/web/product/big/202506/054b62822b9a17f028e97472c90ee48a.png |샌드       |2025-08-14 15:00:54 |null           |[null]        |
+|2  |하겐다즈 마드리드 츄로스 (미니컵) 100ml       |100ml |6900  |6900           |하겐다즈 마드리드 츄로스 아이스크림         |https://haagendazs-store.co.kr/web/product/big/202504/cec28f1e178ef60130079026e21f5860.jpg |미니컵      |2025-08-14 15:03:22 |null           |[null]        |
+|3  |하겐다즈 로마 티라미수 (미니컵) 100ml        |100ml |6900  |6900           |하겐다즈 로마 티라미수 아이스크림          |https://haagendazs-store.co.kr/web/product/big/202504/08ceaceaeffb3126461a8ec4c5bf2d35.jpg |미니컵      |2025-08-14 15:04:03 |null           |[null]        |
+|4  |하겐다즈 블루베리 앤 크림 (파인트) 473ml      |473ml |17900 |17900          |하겐다즈 블루베리 앤 크림 아이스크림        |https://haagendazs-store.co.kr/web/product/big/202504/64e4455a004257bce7c348f21d22b278.png |파인트      |2025-08-14 15:05:12 |null           |[null]        |
+|5  |하겐다즈 로마 티라미수 (파인트) 403ml        |403ml |17900 |17900          |하겐다즈 로마 티라미수 아이스크림          |https://haagendazs-store.co.kr/web/product/big/202504/d08e7ed7b1190472ef19e76cffe3ddf1.jpg |파인트      |2025-08-14 15:05:12 |null           |[null]        |
+|6  |하겐다즈 마드리드 츄로스 (파인트) 403ml       |403ml |17900 |17900          |하겐다즈 마드리드 츄로스 아이스크림         |https://haagendazs-store.co.kr/web/product/big/202504/6257c28078962551fcef13b777279658.jpg |파인트      |2025-08-14 15:05:12 |null           |[null]        |
+|7  |하겐다즈 로마 티라미수 (스틱바) 80ml         |80ml  |6900  |6900           |하겐다즈 로마 티라미수 스틱바 아이스크림      |https://haagendazs-store.co.kr/web/product/big/202504/f2c53e6c5cb0ce189cf348eb820bd007.jpg |스틱바      |2025-08-14 15:05:12 |null           |[null]        |
+|8  |하겐다즈 망고&패션후르츠 (스틱바) 80ml        |80ml  |6900  |6900           |하겐다즈 망고&패션후르츠 스틱바 아이스크림     |https://haagendazs-store.co.kr/web/product/big/202503/fc9a13e73b322a6811c22540fdb52ee8.jpg |스틱바      |2025-08-14 15:08:45 |null           |[null]        |
+|9  |하겐다즈 피치&라즈베리 (스틱바) 80ml         |80ml  |6900  |6900           |하겐다즈 피치&라즈베리 스틱바 아이스크림      |https://haagendazs-store.co.kr/web/product/big/202503/1b27cf53d8ccd431357befeb1dacf24e.jpg |스틱바      |2025-08-14 15:08:45 |null           |[null]        |
+|10 |하겐다즈 마카롱 바닐라&블루베리 (스틱바) 80ml    |80ml  |6900  |6900           |하겐다즈 마카롱 바닐라&블루베리 스틱바 아이스크림 |https://haagendazs-store.co.kr/web/product/big/202404/d83de669cb4c422f74bf7cb2b247f5f9.jpg |스틱바      |2025-08-14 15:08:45 |null           |[null]        |
+|11 |하겐다즈 피스타치오 앤 크림 (미니컵) 100ml     |100ml |6900  |6900           |하겐다즈 피스타치오 앤 크림 아이스크림       |https://haagendazs-store.co.kr/web/product/big/202309/c1bb42296cb646d8f02f4852e892718d.jpg |미니컵      |2025-08-14 15:08:45 |null           |[null]        |
+|12 |하겐다즈 마카롱 스트로베리&라즈베리 (파인트) 403ml |403ml |17900 |17900          |하겐다즈 마카롱 스트로베리&라즈베리 아이스크림   |https://haagendazs-store.co.kr/web/product/big/202504/8d9c45e5cf25e3e7988713e64f2b1adf.jpg |파인트      |2025-08-14 15:08:45 |null           |[null]        |
+|13 |하겐다즈 마카롱 더블 초콜릿 가나슈 (파인트) 403ml |403ml |17900 |17900          |하겐다즈 마카롱 더블 초콜릿 가나슈 아이스크림   |https://haagendazs-store.co.kr/web/product/big/202504/d41d8f86e1c95562362ea63b3773a2ae.jpg |파인트      |2025-08-14 15:08:45 |null           |[null]        |
+|14 |하겐다즈 카라멜비스킷&크림 (파인트) 473ml      |473ml |15500 |15500          |하겐다즈 카라멜비스킷&크림 아이스크림        |https://haagendazs-store.co.kr/web/product/big/202308/d75e76b5084a3e83881f86b1786af879.jpg |파인트      |2025-08-14 15:08:45 |null           |[null]        |
+|15 |하겐다즈 커피 (파인트) 473ml             |473ml |17900 |17900          |하겐다즈 커피 아이스크림               |https://haagendazs-store.co.kr/web/product/big/202308/f04e1d4b26c64f4d66a438c95f4d9ffc.jpg |파인트      |2025-08-14 15:08:45 |null           |[null]        |
+|---|--------------------------------|------|------|---------------|----------------------------|-------------------------------------------------------------------------------------------|---------|--------------------|---------------|--------------|
+
+[DEBUG] 25-08-17 13:12:50 [SelectAllProducts:135] - <==      Total: 15
+[INFO ] 25-08-17 13:13:00 [sqlonly:228] - DELETE FROM SPRING_SESSION
+WHERE EXPIRY_TIME < 1755403980006
+
+[INFO ] 25-08-17 13:14:00 [sqlonly:228] - DELETE FROM SPRING_SESSION
+WHERE EXPIRY_TIME < 1755404040017
+
