@@ -1,37 +1,29 @@
-HELP.md
-.gradle
-build/
-!gradle/wrapper/gradle-wrapper.jar
-!**/src/main/**/build/
-!**/src/test/**/build/
+# VS Code 설정 폴더 (개인 설정이므로 공유 불필요)
+.vscode
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-bin/
-!**/src/main/**/bin/
-!**/src/test/**/bin/
-
-### IntelliJ IDEA ###
+# IntelliJ IDEA 설정 폴더
 .idea
-*.iws
-*.iml
-*.ipr
+
+# IntelliJ IDEA 모듈 설정 폴더
+.idea_modules/
+
+# Gradle 캐시 폴더 (빌드 시 자동 생성됨)
+.gradle/
+
+# 윈도우에서 자동 생성되는 이미지 캐시 파일
+Thumbs.db
+
+# 컴파일된 바이너리 파일 폴더
+bin/
+
+# 애플리케이션 로그 파일 폴더
+logs/
+
+# 사용자 업로드 파일 저장 폴더 (예: 이미지, 문서 등)
+upload/
+
+# 컴파일 결과물 폴더 (예: Java의 out 디렉토리)
 out/
-!**/src/main/**/out/
-!**/src/test/**/out/
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-
-### VS Code ###
-.vscode/
+# 빌드 결과물 폴더 (예: Gradle의 build 디렉토리)
+build/
