@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:replace="~{_fragments/_head :: my-head('비밀번호 재발급')}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/account.css}">
+</head>
+<body>
+<!-- 로딩바 -->
+<img th:src="@{/assets/img/loading.gif}" id="loader" />
+
+<div class="account-container">
+    <h2 class="page-title">비밀번호 재발급</h2>
+    <form id="find-password-form">
+        <!-- 아이디 -->
+        <div class="input-container">
+            <input type="text" name="user_id" id="user_id" class="input-field" placeholder="아이디" />
+        </div>
+
+        <!-- 이메일 -->
+        <div class="input-container">
+            <input type="email" name="email" id="email" class="input-field" placeholder="이메일" />
+        </div>
+
+        <!-- 비밀번호 찾기 버튼 -->
+        <button type="submit" class="btn">비밀번호 찾기</button>
+    </form>
+
+
+<div class="form-footer">
+    <p>로그인이 필요하신가요? <a href="@{/account/login}">로그인</a></p>
+    <p>계정이 없으신가요? <a href="@{/account/join}">회원가입</a></p>
+</div>
+</div>
+
+<th:block th:replace="~{_fragments/_scripts :: my-scripts}"/>
+<script>
+    document.querySelector('#find-password-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // 입력값 유효성 검사
+        try {
+            regexHelper.value('#user_id', "아이디를 입력하세요");
+            regexHelper.value('#email', "이메일 주소를 입력하세요");
+        } catch (err) {
+            alert(err.message);
+            err.element.focus();
+            return false;
+        }
+
+        // 비밀번호 재발급 요청
+        let data = null;
+        try {
+            data = await fetchHelper.put('[[@{/api/account/reset_pw}]]', new FormData(e.currentTarget));
+        } catch (err) {
+            alert(err.message);
+            return false;
+        }
+
+        // 성공 알림
+        const email = document.querySelector('#email').value;
+        alert(`변경된 비밀번호를 ${email}로 보내드렸습니다. 메일함을 확인해 주세요.`);
+        window.location = '[[@{/account/login}]]';
+    });
+</script>
+</body>
+</html>

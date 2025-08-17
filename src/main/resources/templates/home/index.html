@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{_fragments/_head :: my-head('상품상세')}" />
+<link rel="stylesheet" th:href="@{/assets/css/main.css}" />
+
+  <body>
+
+  <th:block th:replace="~{_fragments/header}" />
+    <main>
+      <div class="swiper main-slider">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img src="/assets/img/m-1.jpg" alt="슬라이드1" />
+          </div>
+          <div class="swiper-slide">
+            <img src="/assets/img/m-2.jpg" alt="슬라이드2" />
+          </div>
+          <div class="swiper-slide">
+            <img src="/assets/img/m-3.jpg" alt="슬라이드3" />
+          </div>
+        </div>
+
+      
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+
+      <div class="recommandation">
+        <div class="recommand-text">
+          <h1>추천제품</h1>
+        </div>
+        <div class="recommand">
+          <div class="product-card" th:each="p : ${products}">
+            <img th:src="${p.imageUrl}" th:alt="${p.name}">
+            <div class="product-info">
+              <p class="title" th:text="${p.name}"></p>
+              <p class="price">
+                <span class="original" th:text="|₩${p.originalPrice}원|"></span>
+                <span class="sale" th:text="|₩${p.price}원|"></span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="video-main">
+              <div class="campaign-text">
+                <hr class="underline">
+                <h2>캠페인</h2>
+                <p>달콤한 럭셔리 하겐다즈 스틱바</p>
+              </div>
+
+              <div class="campaign-media">
+                <iframe 
+                  src="https://player.vimeo.com/video/1071707544?autoplay=1&muted=1&loop=1&title=0&byline=0&portrait=0&controls=0" 
+                  frameborder="0" 
+                  allow="autoplay; fullscreen" 
+                  allowfullscreen>
+                </iframe>
+              </div>
+            </div>
+
+
+
+      
+    </main>
+
+  <th:block th:replace="~{_fragments/footer}" />
+
+
+
+    <script>
+      const swiper = new Swiper(".main-slider", {
+        loop: true, 
+        speed: 800, 
+        autoplay: {
+          delay: 2000, 
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+    </script>
+  </body>
+</html>

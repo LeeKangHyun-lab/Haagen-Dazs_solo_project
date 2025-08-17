@@ -1,0 +1,13 @@
+<div id="category-list-container">
+    <ul id="category-list">
+        <li th:each="c : ${categories}" th:if="${c != null}">
+            <a th:href="@{/products/{id}(id=${c.id})}"  th:text="${c.name}"></a>
+
+            <ul th:if="${!#lists.isEmpty(c.subCategories)}" class="sub-category-list">
+                <li th:each="s : ${c.subCategories}">
+                    <a th:href="@{/products/{id}(id=${s.id})}" th:text="${s.name}"></a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>

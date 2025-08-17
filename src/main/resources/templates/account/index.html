@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="~{_fragments/_head :: my-head('MyShop')}" />
+    <link rel="stylesheet" th:href="@{/assets/css/account.css}">
+</head>
+<body>
+    <div class="account-container account" th:if="${session.memberInfo == null}">
+        <h2 class="page-title">환영합니다!</h2>
+        <p>로그인 후 다양한 서비스를 이용하실 수 있습니다.</p>
+
+        <div class="btn-container">
+            <a th:href="@{/account/login}" class="btn">로그인</a>
+            <a th:href="@{/account/join}" class="btn">회원가입</a>
+        </div>
+    </div>
+
+
+<!--    th:if는 괄호안의 조건일때 그 위의 th:src 사진을 보여주고,
+ th:unless는 괄호안이 false일때 해당되는 사진을 보여준다.
+ 즉, if는 괄호안이 참일떄, unless는 괄호안이 거짓일때 동작한다.-->
+    <div class="account-container account" th:unless="${session.memberInfo == null}">
+        <img class="user-ico" th:src="@{/assets/img/noimage.jpg}"
+             th:if="${session.memberInfo.photo == null or session.memberInfo.photo == ''}" />
+        <img class="user-ico" th:src="${@fileHelper.getFileUrl(session.memberInfo.photo)}"
+             th:unless="${session.memberInfo.photo == null or session.memberInfo.photo == ''}" />
+
+        <h2 class="page-title">환영합니다, [<span th:text="${session.memberInfo.userName}"></span>]님!</h2>
+        <p>계정을 통해 다양한 서비스를 이용하세요.</p>
+
+        <div class="btn-container">
+            <a th:href="@{/account/edit}" class="btn">내 정보 수정</a>
+            <a th:href="@{/api/account/logout}" class="btn" id="btn-logout">로그아웃</a>
+
+        </div>
+
+        <div class="form-footer">
+            <p><a th:href="@{account/out}">회원탈퇴</a></p>
+        </div>
+
+        <script>
+            document.querySelector("#btn-logout").addEventListener('click', async (e) =>{
+                e.preventDefault();
+
+                const data = await fetchHelper.get(e.currentTarget.getAttribute('href'));
+
+                if(data){
+                    window.location.reload();
+                }
+            });
+        </script>
+    </div>
+    <th:block th:replace="~{_fragments/_scripts :: my-scripts}"/>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko" translate="no" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - 페이지를 찾을 수 없습니다</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #fafafa;
+            text-align: center;
+            padding: 60px;
+        }
+
+        .error-container {
+            display: inline-block;
+            min-width: 480px;
+            padding: 30px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .error-code {
+            font-size: 48px;
+            color: #e74c3c;
+            margin-bottom: 10px;
+        }
+
+        .message {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .path {
+            font-weight: bold;
+            color: #ff3333;
+        }
+
+        .debug {
+            font-size: 14px;
+            color: #777;
+            text-align: left;
+            margin-top: 20px;
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .debug pre {
+            white-space: pre-wrap;
+            word-break: break-word;
+            margin: 0;
+            padding: 20px 10px;
+            max-height: 200px;
+            line-height: 1.5;
+            overflow-y: auto;
+            font-size: 13px;
+            color: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="error-container">
+        <h1 class="error-code">404 Error</h1>
+        <h2>요청하신 페이지를 찾을 수 없습니다</h2>
+        <h3>요청 경로: <span class='path' th:text="${path}"></span></h3>
+        <p class="message" th:text="${message}"></p>
+    </div>
+</body>
+</html>

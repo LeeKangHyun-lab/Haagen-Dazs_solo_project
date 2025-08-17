@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:replace="~{_fragments/_head :: my-head ('회원정보 수정')}" />
+    <link rel="stylesheet" th:href="@{/assets/css/account.css}" />
+</head>
+<body>
+
+    <img th:src="@{/assets/img/loading.gif}" id="loader" />
+
+    <div class="account-container edit">
+        <h2 class="page-title">내 정보 수정</h2>
+        <form id="signup-form">
+            <!-- 아이디 -->
+            <div class="input-container">
+                <input th:value="${session.memberInfo.userId}" disabled type="text" name="user_id" id="user_id"
+                       class="input-field" placeholder="아이디" />
+            </div>
+
+            <!-- 비밀번호 -->
+            <div class="input-container">
+                <input type="password" name="user_pw" id="user_pw" class="input-field" placeholder="현재 비밀번호" />
+            </div>
+
+            <!-- 변경할 비밀번호 -->
+            <div class="input-container info">
+                <input type="password" name="new_user_pw" id="new_user_pw" class="input-field" placeholder="새로운 비밀번호" />
+                <p>수정을 원하는 경우에만 입력하세요.</p>
+            </div>
+
+            <!-- 변경할 비밀번호 확인 -->
+            <div class="input-container">
+                <input type="password" name="new_user_pw_confirm" id="new_user_pw_confirm" class="input-field"
+                       placeholder="새로운 비밀번호 확인" />
+            </div>
+
+            <!-- 이름 -->
+            <div class="input-container">
+                <input th:value="${session.memberInfo.userName}" type="text" name="user_name" id="user_name"
+                       class="input-field" placeholder="이름" />
+            </div>
+
+            <!-- 이메일 -->
+            <div class="input-container">
+                <input th:value="${session.memberInfo.email}" type="email" name="email" id="email" class="input-field"
+                       placeholder="이메일" />
+                <button type="button" class="inline-btn" id="email_unique_check">중복 검사</button>
+            <!--
+            기존 이메일은 중복검사가 필요 없으므로, 중복검사가 완료된 상태로 시작 : Y
+            만약 이메일 값이 변경되면 값이 N으로 변경되므로 중복검사가 필요하게 된다.
+            -->
+                <input type="hidden" name="email_check" id="email_check" value="Y" />
+            </div>
+
+            <!-- 전화번호 -->
+            <div class="input-container">
+                <!-- '-' 기호 제거 -->
+                <input th:value="${session.memberInfo.phone.replace('-', '')}" type="tel" name="phone" id="phone"
+                       class="input-field" placeholder="전화번호" />
+            </div>
+
+            <!-- 생년월일 -->
+            <div class="input-container">
+                <input th:value="${session.memberInfo.birthday}" type="date" name="birthday" id="birthday"
+                       class="input-field" placeholder="생년월일" />
+            </div>
+
+            <!-- 성별 (라디오 버튼 형태) -->
+            <div class="input-container gender-container">
+                <span>성별 :</span>
+                <label class="gender-label">
+                    <input th:checked="${session.memberInfo.gender == 'M'}" type="radio" name="gender" value="M"
+                           class="gender-input" />
+                    <span class="gender-custom"></span>남성
+                </label>
+                <label class="gender-label">
+                    <input th:checked="${session.memberInfo.gender == 'F'}" type="radio" name="gender" value="F"
+                           class="gender-input" />
+                    <span class="gender-custom"></span>여성
+                </label>
+            </div>
+
+            <!-- 우편번호 -->
+            <div class="input-container">
+                <input th:value="${session.memberInfo.postcode}" type="text" name="postcode" id="postcode"
+                       class="input-field" placeholder="우편번호" readonly />
+                <button type="button" class="inline-btn" id="find-postcode">우편번호 찾기</button>
+            </div>
+
+            <!-- 주소 -->
+            <div class="input-container">
+                <input th:value="${session.memberInfo.addr1}" type="text" name="addr1" id="addr1" class="input-field"
+                       placeholder="주소" readonly />
+            </div>
+            <div class="input-container">
+                <input th:value="${session.memberInfo.addr2}" type="text" name="addr2" id="addr2" class="input-field"
+                       placeholder="상세 주소" />
+            </div>
+
+            <!-- 사진 -->
+            <div class="input-container info">
+                <th:block th:if="${session.memberInfo.photo == null or session.memberInfo.photo == ''}">
+                    <!-- 등록된 프로필 사진이 없을 경우 : 파일 업로드 가능 -->
+                    <input type="file" name="photo" id="photo" class="input-field" />
+                </th:block>
+                <th:block th:unless="${session.memberInfo.photo == null or session.memberInfo.photo == ''}">
+                    <!-- 기존에 등록된 사진이 있을 경우 : 삭제 여부를 선택해야만 업로드 가능 -->
+                    <input type="file" name="photo" id="photo" class="input-field" disabled />
+                    <div class="img-container">
+                        <img class="user-ico" th:src="${@fileHelper.getFileUrl(session.memberInfo.photo)}" />
+                        <p th:text="${session.memberInfo.photo + ' (이)가 등록되어 있습니다.'}"></p>
+                        <label>
+                            <input type="checkbox" name="delete_photo" id="delete_photo" value="Y"
+                                   data-disabled="#photo" /> 삭제
+                        </label>
+                    </div>
+                </th:block>
+            </div>
+
+            <!-- 회원가입 버튼 -->
+            <button type="submit" class="btn">정보수정</button>
+
+            <div class="form-footer">
+                <p><a th:href="@{/account/out}">회원탈퇴</a></p>
+            </div>
+        </form>
+    </div>
+
+    <th:block th:replace="~{_fragments/_scripts :: my-scripts}" />
+    <!-- 다음 우편번호 검색 : https://postcode.map.daum.net/guide -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+    <script>
+        /**
+         * [삭제] 파일 삭제 여부 체크에 따른 업로드 필드 활성화 처리
+         * - data-disabled 라는 속성을 갖는 모든 요소에 대해 일괄 처리 한다.
+         */
+        document.querySelectorAll("*[data-disabled]").forEach((v, i) => {
+            v.addEventListener("change", e => {
+                e.preventDefault();
+
+                const current = e.currentTarget;
+                document.querySelector(current.dataset.disabled).disabled = !current.checked;
+            });
+        });
+
+        /** 아이디 중복 검사 이벤트 */
+        // 아이디 중복 검사 처리는 필요 없으므로 제거
+
+        /** 아이디에 대한 입력값이 변경되는 경우 발생하는 이벤트 */
+        // 아이디 중복검사 기능이 제거되었으므로 이 기능도 삭제
+
+        /** 이메일 중복 검사 이벤트 */
+        document.querySelector("#email_unique_check").addEventListener("click", async (e) => {
+            e.preventDefault();
+
+            try {
+                regexHelper.value("#email", "이메일을 입력하세요");
+            } catch (e) {
+                alert(e.message);
+                e.element.focus();
+                return;
+            }
+
+            try {
+                // 중복 이메일 검사 --> 사용 가능 이메일 : 정상종료 / 사용 불가 이메일 : 예외 발생
+                await fetchHelper.get("/api/account/email_unique_check", {
+                    email: document.querySelector("#email").value
+                });
+            } catch (e) {
+                alert(e.message);
+                e.element.focus();
+                return;
+            }
+
+            alert("사용 가능한 이메일 입니다.");
+            document.querySelector("#email_check").value = "Y";
+        });
+
+        /** 이메일에 대한 입력값이 변경되는 경우 발생하는 이벤트 */
+        document.querySelector("#email").addEventListener("change", e => {
+            // 이메일의 중복검사 결과를 다시 해야 한다.
+            // 따라서, 중복검사 상태 값을 N으로 변경한다.
+            document.querySelector("#email_check").value = "N";
+        });
+
+        /** 우편번호 검색 이벤트 */
+        document.querySelector("#find-postcode").addEventListener("click", async (e) => {
+            e.preventDefault();
+            uiHelper.findPostCode();
+        });
+
+        /** 회원가입 폼 제출 이벤트 */
+        document.getElementById("signup-form").addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            /** 입력값의 유효성 검사 */
+            try {
+                // 현재 비밀번호에 대한 입력 여부 확인
+                regexHelper.value("#user_pw", "현재 비밀번호를 입력해주세요.");
+
+                // 변경할 비밀번호와 변경할 비밀번호의 확인값
+                const newUserPw = document.querySelector("#new_user_pw").value;
+                const newUserPwConfirm = document.querySelector("#new_user_pw_confirm").value;
+
+                // 새로운 비밀번호가 입력되었을 때만 확인값 검사
+                if (newUserPw || newUserPwConfirm) {
+                    regexHelper.compareTo("#new_user_pw", "#new_user_pw_confirm", "비밀번호 확인이 일치하지 않습니다.");
+                }
+
+                regexHelper.value("#user_name", "이름을 입력해주세요.");
+                regexHelper.kor("#user_name", "이름은 한글만 입력할 수 있습니다.");
+                regexHelper.maxLength("#user_name", 20, "이름은 20자 이하로 입력해주세요.");
+                regexHelper.minLength("#user_name", 2, "이름은 2자 이상 입력해주세요.");
+                regexHelper.engNum("#user_pw", "비밀번호는 영문과 숫자로 입력해주세요.");
+
+                regexHelper.value("#phone", "전화번호를 입력해주세요.");
+                regexHelper.phone("#phone", "전화번호 형식이 올바르지 않습니다.");
+
+                regexHelper.value("#email", "이메일을 입력해주세요.");
+                regexHelper.email("#email", "이메일 형식이 올바르지 않습니다.");
+
+                regexHelper.value("#birthday", "생년월일을 입력해주세요.");
+
+                regexHelper.check(".gender-input", "성별을 선택해주세요.");
+
+                regexHelper.value("#postcode", "우편번호를 입력해주세요.");
+                regexHelper.maxLength("#postcode", 5, "우편번호는 5자리로 입력해주세요.");
+                regexHelper.minLength("#postcode", 5, "우편번호는 5자리로 입력해주세요.");
+
+                regexHelper.value("#addr1", "주소를 입력해주세요.");
+                regexHelper.value("#addr2", "상세주소를 입력해주세요.");
+            } catch (e) {
+                alert(e.message);
+                e.element.focus();
+                return;
+            }
+
+            // -------------------------------
+            // 아이디 중복검사 루틴 제거, 이메일 중복검사 여부 확인은 유지
+            // -------------------------------
+            const emailCheck = document.querySelector("#email_check").value;
+
+            if (emailCheck === "N") {
+                alert("이메일 중복 검사를 진행해주세요.");
+                return;
+            }
+
+            // <form>태그 내의 모든 요소를 Ajax 요청이 가능한 상태로 변환
+            const formData = new FormData(e.currentTarget);
+
+            // Ajax 요청 --> 백엔드에 정보 수정 요청
+            try {
+                data = await fetchHelper.put("[[@{/api/account/edit}]]", formData);
+            } catch (e) {
+                alert(e.message);
+                return;
+            }
+
+            // 회원정보 수정 성공 후 원하는 페이지로 이동
+            window.location = "[[@{/account}]]";
+
+        });
+
+    </script>
+</body>
+
+</html>
