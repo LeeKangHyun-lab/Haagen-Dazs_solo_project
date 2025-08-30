@@ -10,7 +10,7 @@ import java.util.List;
 @Mapper
 public interface ProductMapper {
 
-    @Select("SELECT name, original_price, price ,image_url FROM " +
+    @Select("SELECT id, name, original_price, price ,image_url FROM " +
             "products " +
             "LIMIT 0, 4")
     @Results(id = "resultMap")
@@ -22,7 +22,7 @@ public interface ProductMapper {
     public List<Product> SelectAllProducts();
 
     @Select("<script>" +
-            "SELECT name, size, " +
+            "SELECT id, name, size, " +
             "price, original_price, description, " +
             "image_url, category, " +
             "created_at detail_image1 " +

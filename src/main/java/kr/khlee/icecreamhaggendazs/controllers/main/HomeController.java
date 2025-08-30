@@ -27,6 +27,16 @@ public class HomeController {
         return "home/index";
     }
 
+    @GetMapping("/recommended")
+    public String recommendedProducts(Model model) {
+        List<Product> products = productService.SelectRecommandation();
+
+        model.addAttribute("singleProducts", products);
+        model.addAttribute("giftProducts", products);
+
+        return "home/recommended";
+    }
+
     @GetMapping("/products")
     public String productsPage(Model model) {
 
@@ -46,5 +56,21 @@ public class HomeController {
 
         return "home/products_detail";
     }
+
+    @GetMapping("/membership")
+    public String membershipPage() {
+        return "home/membership";
+    }
+
+    @GetMapping("/brand")
+    public String brandPage() {
+        return "home/brand";
+    }
+
+    @GetMapping("/b2b")
+    public String b2bPage() {
+        return "home/b2b";
+    }
+
 
 }

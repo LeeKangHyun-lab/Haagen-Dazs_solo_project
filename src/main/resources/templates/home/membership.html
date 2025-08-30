@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="~{_fragments/_head :: my-head('상품상세')}" />
+    <link rel="stylesheet" th:href="@{/assets/css/main.css}" />
+</head>
+<body>
+<th:block th:replace="~{_fragments/header}" />
+
+<main>
+    <div class="membership-main">
+        <div class="membership-space">
+            <img src="/assets/img/membership01.png">
+
+            <form>
+                <div class="membership-login">
+                    <a href="#" class="login-button">
+                        <i>로그인하러 가기</i>
+                    </a>
+                </div>
+            </form>
+            <ul>
+                <li>"신규 고객에게 제공되는 15% 할인 웰컴 쿠폰의 사용 기한은 발급일로부터 2개월이며, 중복 할인 적용이 가능합니다. (일부 행사 제품은 적용 불가)"</li>
+                <li>"생일 쿠폰의 사용 기한은 발급일로부터 1개월이며, 선물용 제품 (케이크, 마카롱 등) 에만 사용 가능합니다,"</li>
+                <li>"리뷰 쿠폰의 사용 기한은 발급일로부터 3개월이며, 중복 할인이 가능합니다. (리뷰 쿠폰은 주문 당 1건만 사용 가능)"</li>
+                <li>"각종 쿠폰은 회원가입 후 마케팅 활용 동의를 한 고객에 한해 제공됩니다."</li>
+            </ul>
+        </div>
+
+
+
+    </div>
+
+
+</main>
+
+<th:block th:replace="~{_fragments/_footer}" />
+
+</body>
+</html>

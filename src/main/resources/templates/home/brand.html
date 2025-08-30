@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="~{_fragments/_head :: my-head('상품상세')}" />
+    <link rel="stylesheet" th:href="@{/assets/css/main.css}" />
+</head>
+<body>
+<th:block th:replace="~{_fragments/header}" />
+
+<main>
+    <div class="brand-main">
+        <div class="brand-space">
+            <img src="/assets/img/brand1.png">
+            <img src="/assets/img/brand2.png">
+            <img src="/assets/img/brand3.png">
+        </div>
+    </div>
+
+
+</main>
+
+<th:block th:replace="~{_fragments/_footer}" />
+
+</body>
+</html>

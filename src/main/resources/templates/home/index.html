@@ -32,17 +32,20 @@
         </div>
         <div class="recommand">
           <div class="product-card" th:each="p : ${products}">
-            <img th:src="${p.imageUrl}" th:alt="${p.name}">
-            <div class="product-info">
-              <p class="title" th:text="${p.name}"></p>
-              <p class="price">
-                <span class="original" th:text="|₩${p.originalPrice}원|"></span>
-                <span class="sale" th:text="|₩${p.price}원|"></span>
-              </p>
-            </div>
+            <a th:href="@{'products/products_detail/' + ${p.id}}">
+              <img th:src="${p.imageUrl}" th:alt="${p.name}">
+              <div class="product-info">
+                <p class="title" th:text="${p.name}"></p>
+                <p class="price">
+                  <span class="original" th:text="|₩${p.originalPrice}원|"></span>
+                  <span class="sale" th:text="|₩${p.price}원|"></span>
+                </p>
+              </div>
+            </a>
           </div>
         </div>
       </div>
+
 
 
 
@@ -68,7 +71,7 @@
       
     </main>
 
-  <th:block th:replace="~{_fragments/footer}" />
+  <th:block th:replace="~{_fragments/_footer}" />
 
 
 

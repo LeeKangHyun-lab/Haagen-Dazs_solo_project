@@ -44,9 +44,11 @@ body {
 /* 모든 제품 메뉴바 */
 /* 기존 secondbar 수정 */
 .secondbar .top-center {
+  margin-top: 30px;
   display: flex;
   justify-content: space-between; /* 전체 폭에 고르게 배치 */
   gap: 0; /* 간격 제거 */
+  border-bottom: 1px solid black;
 }
 
 .secondbar .top-center a {
@@ -85,6 +87,7 @@ body {
   background-color: #7b0f2f;
   color: white;
   position: relative;
+  margin-bottom: 48px;
 }
 
 .hd-nav .container {
@@ -122,13 +125,11 @@ body {
 }
 
 
-/*.hd-gnb a {*/
-/*  flex-shrink: 0;           !* 크기 줄어들지 않도록 *!*/
-/*  color: white;*/
-/*  font-weight: bold;*/
-/*  text-decoration: none;*/
-/*  font-size: 15px;*/
-/*}*/
+.hd-gnb > ul > li > a {
+  display: block;              /* 글자 크기에만 붙지 않고 li 전체 차지 */
+  padding: 15px 20px;          /* 클릭 범위 키우기 */
+  text-align: center;          /* (옵션) 글자 가운데 정렬 */
+}
 
 
 .hd-gnb::-webkit-scrollbar {
@@ -138,21 +139,28 @@ body {
 /* 기본 메뉴 */
 .hd-gnb ul {
   display: flex;
+  align-items: center;   /* 세로 가운데 정렬 */
+  height: 100%;          /* 부모 높이(container 높이)와 동일하게 */
   gap: 40px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
+
 .hd-gnb > ul > li {
   position: relative;
 }
+
 .hd-gnb > ul > li > a {
+  display: block;
+  height: 100%;        /* ul 높이에 맞춤 */
+  line-height: 60px;   /* 컨테이너 높이에 맞춰 글자 수직 중앙 */
+  padding: 0 15px;     /* 좌우 간격 */
   color: #fff;
   font-weight: bold;
-  padding: 15px 10px;
-  display: block;
   text-decoration: none;
 }
+
 
 /* 2차 메뉴 (아래쪽 전체 폭) */
 /* 서브바 기본 숨김 */
@@ -161,16 +169,15 @@ body {
   position: absolute;
   top: 100%;
   background: #fff;
-  border-top: 1px solid #ddd;
   z-index: 9999;
   padding-top: 15px;
   padding-bottom: 15px;
-  margin-top: 8px;
+  border-bottom: 1px solid black;
 }
 
 .subbar a {
   margin: 0 20px;
-  color: #777;
+  color: #777777;
   text-decoration: none;
   font-size: 18px;
 }
@@ -181,12 +188,17 @@ body {
 
 /* 메뉴 hover 시 열림 */
 .has-sub {
-  position: absolute;
+  position: relative;
 }
+
+.has-sub > a {
+  display: block;
+  height: 100%;
+}
+
 .has-sub:hover .subbar {
   display: block;
 }
-
 
 
 
@@ -308,6 +320,7 @@ html, body {
 .product-card:hover .product-info {
   opacity: 1;
   transform: translateY(0);
+  color: black;
 }
 
 .product-info .title{
@@ -347,7 +360,7 @@ html, body {
 }
 .product-card-all {
   position: relative;
-  width: calc((100% - 60px) / 4); /* 4개 고정: gap(20px) * 3 = 60px */
+  width: calc((100% - 60px) / 4); /* 4개 고정 */
   box-sizing: border-box;
   overflow: hidden;
   border-radius: 8px;
@@ -362,6 +375,7 @@ html, body {
 
 .product-card-all:hover {
   transform: translateY(-5px);
+  color: black;
 }
 
 /* 상품 정보 */
@@ -384,6 +398,7 @@ html, body {
 
 .product-info-all .title {
   font-size: 14px;
+  color: black;
 }
 
 .product-info-all .price {
@@ -520,7 +535,102 @@ html, body {
   margin-top: 20px;
 }
 
-/*삼품 상세 정보*/
+/*추천 상품 페이지*/
+.product-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.product-section {
+  margin-bottom: 60px;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+
+/* 상품 카드 */
+.all-products {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* 카드 간격 */
+  justify-content: flex-start;
+  padding: 20px;
+  box-sizing: border-box;
+
+  max-width: 1200px;  /* 전체 폭 제한 */
+  margin: 0 auto;     /* 중앙 정렬 */
+}
+.product-card-all {
+  position: relative;
+  width: calc((100% - 60px) / 4); /* 4개 고정 */
+  box-sizing: border-box;
+  overflow: hidden;
+  border-radius: 8px;
+  transition: transform 0.2s ease;
+}
+
+.product-card-all img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.product-card-all:hover {
+  transform: translateY(-5px);
+  color: black;
+}
+
+
+/* 상품 정보 */
+.product-info-all {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  padding: 10px;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: all 0.3s ease-in-out;
+}
+
+.product-card-all:hover .product-info-all {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.product-info-all .title {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.product-info-all .price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.product-info-all .original {
+  text-decoration: line-through;
+  color: #bbb;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.product-info-all .sale {
+  color: #660828;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/*상품 상세 정보*/
 .product-detail {
   display: flex;
   justify-content: flex-start;
@@ -625,4 +735,86 @@ html, body {
 .wishlist {
   background-color: #eee;
   color: #333;
+}
+
+
+/*맴버쉽 페이지*/
+
+.membership-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /*margin-top: 48px;*/
+}
+
+form {
+  width: 100%;
+  background-color: #f9f1da;
+  height: 20%;
+}
+
+.membership-login {
+  margin-top: -10px;
+  padding: 30px 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.membership-login a {
+  text-decoration: none;
+  text-align: center;
+  color: #eeeeee;
+  font-size: 20px;
+  padding: 30px;
+  background-color: #660828;
+}
+
+.membership-space ul {
+  background-color: #f9f1da;
+  margin-top: -10px;
+  margin-bottom: 60px;
+}
+
+.membership-space ul li {
+  font-size: 18px;
+  padding-bottom: 10px;
+}
+
+/*브랜드 페이지*/
+
+.brand-main {
+  /*max-width: 1200px;*/
+  margin: 0 auto;
+}
+
+.brand-space {
+  display: flex;
+  flex-direction: column;
+  align-items: center;      /* 내부 아이템 가로 중앙 정렬 */
+  justify-content: center;
+  margin-bottom: 61px;
+}
+
+.brand-space img{
+  margin-bottom: -1px;
+}
+
+/*B2B 페이지*/
+
+.b2b-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.b2b-space {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 45px;
+}
+
+.b2b-space img {
+  margin-bottom: 15px;
 }

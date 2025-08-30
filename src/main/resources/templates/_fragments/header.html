@@ -38,12 +38,12 @@
                 <ul>
                     <!-- 추천제품 -->
                     <li class="has-sub">
-                        <a href="#">추천제품</a>
-                        <div class="subbar">
-                            <a th:href="@{/products/recommended/all}">전체보기</a>
-                            <a th:href="@{/products/recommended/single}">단독구성</a>
-                            <a th:href="@{/products/recommended/gift}">선물추천</a>
-                        </div>
+                        <a th:href="@{/recommended}">추천제품</a>
+                            <div class="subbar">
+                                <a th:href="@{/products/recommended/all}">전체보기</a>
+                                <a th:href="@{/products/recommended/single}">단독구성</a>
+                                <a th:href="@{/products/recommended/gift}">선물추천</a>
+                            </div>
                     </li>
 
                     <!-- 모든제품 -->
@@ -60,9 +60,9 @@
                         </div>
                     </li>
 
-                    <li><a href="#">멤버십</a></li>
-                    <li><a href="#">브랜드</a></li>
-                    <li><a href="#">외식사업 고객용(B2B)</a></li>
+                    <li><a th:href="@{/membership}">멤버십</a></li>
+                    <li><a th:href="@{/brand}">브랜드</a></li>
+                    <li><a th:href="@{/b2b}">외식사업 고객용(B2B)</a></li>
                 </ul>
             </nav>
 
