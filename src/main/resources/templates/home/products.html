@@ -12,12 +12,12 @@
         <div class="container">
             <div class="top-center">
                 <a th:href="@{/products}">전체보기</a>
-                <a href="#">파인트</a>
-                <a href="#">미니컵</a>
-                <a href="#">스틱바</a>
-                <a href="#">쿼터</a>
-                <a href="#">케이크/디저트</a>
-                <a href="#">굿즈</a>
+                <a th:href="@{/products/파인트}">파인트</a>
+                <a th:href="@{/products/미니컵}">미니컵</a>
+                <a th:href="@{/products/스틱바}">스틱바</a>
+                <a th:href="@{/products/쿼터}">쿼터</a>
+                <a th:href="@{/products/케이크}">케이크/디저트</a>
+                <a th:href="@{/products/굿즈}">굿즈</a>
 
             </div>
         </div>
@@ -26,7 +26,7 @@
     <div class="all-products">
         <div class="all-products">
             <div class="product-card-all" th:each="p : ${products}">
-                <a th:href="@{'products/products_detail/' + ${p.id}}">
+                <a th:href="@{'/products/products_detail/' + ${p.id}}">
                     <img th:src="${p.imageUrl}" th:alt="${p.name}">
                     <div class="product-info-all">
                         <p class="title" th:text="${p.name}"></p>

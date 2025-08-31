@@ -37,4 +37,47 @@ public class productServiceTest {
         log.info(product.toString());
     }
 
+    @Test
+    void selectCake() throws Exception{
+        List<Product> product = productService.SelectGift();
+
+        log.info(product.toString());
+    }
+
+    @Test
+    void selectCakeAll() throws Exception{
+        List<Product> product = productService.SelectGiftAll();
+
+        log.info(product.toString());
+    }
+
+    @Test
+    void selectSingle() throws Exception{
+        List<Product> product = productService.SelectSingle();
+
+        log.info(product.toString());
+    }
+    @Test
+    void selectSingleAll() throws Exception{
+        List<Product> product = productService.SelectSingleAll();
+
+        log.info(product.toString());
+    }
+
+    @Test
+    void selectSingleProduct() throws Exception{
+        List<Product> product = productService.SelectByCategory("파인트");
+
+        log.info(product.toString());
+    }
+
+    @Test
+    void getProductCount() throws Exception{
+        String input = "파인트";
+
+        int count = productService.getProductCount(input);
+
+        log.info(String.valueOf(count));
+    }
+
 }

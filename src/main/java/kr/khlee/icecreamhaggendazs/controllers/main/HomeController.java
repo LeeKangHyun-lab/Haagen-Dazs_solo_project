@@ -12,7 +12,7 @@ import java.util.List;
 
 
 @Controller
-public class HomeController {
+public class HomeController{
 
     @Autowired
     private ProductService productService;
@@ -29,12 +29,33 @@ public class HomeController {
 
     @GetMapping("/recommended")
     public String recommendedProducts(Model model) {
-        List<Product> products = productService.SelectRecommandation();
+        List<Product> singleProducts = productService.SelectSingle();
+        List<Product> giftProducts = productService.SelectGift();
 
-        model.addAttribute("singleProducts", products);
-        model.addAttribute("giftProducts", products);
+        model.addAttribute("singleProducts", singleProducts);
+        model.addAttribute("giftProducts", giftProducts);
 
         return "home/recommended";
+    }
+
+    @GetMapping("/recommended_single")
+    public String recommendedSingleAll(Model model) {
+        List<Product> singleProducts = productService.SelectSingleAll();
+
+        model.addAttribute("singleProducts", singleProducts);
+
+        return "home/recommended_single";
+
+    }
+
+    @GetMapping("/recommended_gift")
+    public String recommendedGiftAll(Model model) {
+        List<Product> giftProducts = productService.SelectGiftAll();
+
+        model.addAttribute("giftProducts", giftProducts);
+
+        return "home/recommended_gift";
+
     }
 
     @GetMapping("/products")
@@ -44,6 +65,15 @@ public class HomeController {
 
         model.addAttribute("products", products);
         return "home/products";
+    }
+
+    @GetMapping("/products/{category}")
+    public String productsByCategory(@PathVariable("category") String category, Model model) {
+        List<Product> products = productService.SelectByCategory(category);
+
+        model.addAttribute("products", products);
+        model.addAttribute("category", category); // 뷰에서 타이틀/탭 표시용
+        return "home/products"; // 기존 products.html 재사용
     }
 
     @GetMapping("/products/products_detail/{id}")
@@ -71,6 +101,7 @@ public class HomeController {
     public String b2bPage() {
         return "home/b2b";
     }
+
 
 
 }

@@ -37,4 +37,56 @@ public class ProductMapperTests {
 
         log.info(product.toString());
     }
+
+    @Test
+    void SelectCake(){
+        List<Product> product = productMapper.SelectCake();
+
+        log.info(product.toString());
+    }
+
+    @Test
+    void SelectCakeAll(){
+        List<Product> products = productMapper.SelectCakeAll();
+
+        log.info(products.toString());
+    }
+
+    @Test
+    void SelectSingle(){
+        List<Product> products = productMapper.SelectSingle();
+
+        log.info(products.toString());
+    }
+
+    @Test
+    void SelectSingleAll(){
+        List<Product> products = productMapper.SelectSingleAll();
+
+        log.info(products.toString());
+    }
+
+    @Test
+    void SelectByCategory(){
+        String input = "파인트";
+        List<Product> products = productMapper.SelectByCategory(input);
+
+        log.info(products.toString());
+    }
+
+    @Test
+    void getProductCount(){
+        String input = "파인트";
+
+        int count = productMapper.getProductCount(input);
+
+        log.info(String.valueOf(count));
+    }
+
+    @Test
+    void getAllProductCount(){
+        int count = productMapper.getAllProductCount();
+
+        log.info(String.valueOf(count));
+    }
 }

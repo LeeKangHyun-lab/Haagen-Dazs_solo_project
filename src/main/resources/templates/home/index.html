@@ -32,7 +32,7 @@
         </div>
         <div class="recommand">
           <div class="product-card" th:each="p : ${products}">
-            <a th:href="@{'products/products_detail/' + ${p.id}}">
+            <a th:href="@{'/products/products_detail/' + ${p.id}}">
               <img th:src="${p.imageUrl}" th:alt="${p.name}">
               <div class="product-info">
                 <p class="title" th:text="${p.name}"></p>
