@@ -31,19 +31,57 @@
     <div class="hd-nav">
         <div class="container">
             <div class="nav-left">
-                <i class="fa-solid fa-bars"></i>
+                <i class="fa-solid fa-bars" id="menu-toggle"></i>
             </div>
 
-            <nav class="hd-gnb">
+            <!-- Mega Menu (처음엔 숨김) -->
+            <div class="hd-megamenu" id="megamenu">
+                <div class="mega-top">
+                    <i class="fa-solid fa-xmark" id="menu-close"></i>
+                </div>
+                <div class="mega-content">
+                    <div class="mega-column">
+                        <h4>추천제품</h4>
+                        <a href="/recommended">전체보기</a>
+                        <a href="/recommended_single">단독구성</a>
+                        <a href="/recommended_gift">선물추천</a>
+                    </div>
+                    <div class="mega-column">
+                        <h4>모든제품</h4>
+                        <a href="/products">전체보기</a>
+                        <a href="/products/파인트">파인트</a>
+                        <a href="/products/미니컵">미니컵</a>
+                        <a href="/products/스틱바">스틱바&샌드</a>
+                        <a href="/products/쿼터">쿼터</a>
+                        <a href="/products/케이크">케이크&디저트</a>
+                        <a href="/products/굿즈">굿즈</a>
+                    </div>
+                    <div class="mega-column">
+                        <h4>멤버십</h4>
+                        <a href="/membership">혜택안내</a>
+                    </div>
+                    <div class="mega-column">
+                        <h4>브랜드</h4>
+                        <a href="/brand">브랜드 스토리</a>
+                    </div>
+                    <div class="mega-column">
+                        <h4>외식사업 고객용(B2B)</h4>
+                        <a href="/b2b">B2B 안내</a>
+                    </div>
+                </div>
+            </div>
+
+
+    <nav class="hd-gnb">
                 <ul>
                     <!-- 추천제품 -->
                     <li class="has-sub">
                         <a th:href="@{/recommended}">추천제품</a>
-                            <div class="subbar">
-                                <a th:href="@{/recommended}">전체보기</a>
-                                <a th:href="@{/recommended_single}">단독구성</a>
-                                <a th:href="@{/recommended_gift}">선물추천</a>
-                            </div>
+                        <div class="subbar">
+                            <a th:href="@{/recommended}">전체보기</a>
+                            <a th:href="@{/recommended_single}">단독구성</a>
+                            <a th:href="@{/recommended_gift}">선물추천</a>
+                        </div>
                     </li>
 
                     <!-- 모든제품 -->
@@ -75,9 +113,24 @@
                     </button>
                 </form>
             </div>
-
-
-
         </div>
     </div>
 </header>
+
+<!--  햄버거 버튼 동작 스크립트 -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const menuToggle = document.getElementById("menu-toggle");
+        const menuClose = document.getElementById("menu-close");
+        const megamenu = document.getElementById("megamenu");
+
+        menuToggle.addEventListener("click", function() {
+            megamenu.classList.add("active");
+        });
+
+        menuClose.addEventListener("click", function() {
+            megamenu.classList.remove("active");
+        });
+    });
+
+</script>
