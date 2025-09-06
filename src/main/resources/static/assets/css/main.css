@@ -40,6 +40,49 @@ body {
   justify-content: space-between;
   align-items: center;
 }
+/* Mega Menu 기본 숨김 */
+.hd-megamenu {
+    display: none;
+    position: absolute;
+    top: 100%; /* header 아래 */
+    left: 0;
+    width: 100%;
+    background: #fff;
+    border-top: 1px solid #ddd;
+    z-index: 9999;
+    padding: 30px 50px;
+}
+
+.hd-megamenu.active {
+    display: block;
+}
+
+.mega-top {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.mega-content {
+    display: flex;
+    justify-content: space-around;
+}
+
+.mega-column h4 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+.mega-column a {
+    display: block;
+    margin: 5px 0;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+}
+
 
 /* 모든 제품 메뉴바 */
 /* 기존 secondbar 수정 */
