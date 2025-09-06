@@ -68,11 +68,16 @@
 
             <!-- 검색창 -->
             <div class="nav-right">
-                <div class="search-box">
-                    <input type="text" placeholder="" />
-                    <button><i class="fa-solid fa-magnifying-glass"></i></button>
-                </div>
+                <form th:action="@{/search}" method="get" class="search-box">
+                    <input type="text" name="keyword" placeholder="검색어 입력" />
+                    <button type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
             </div>
+
+
+
         </div>
     </div>
 </header>

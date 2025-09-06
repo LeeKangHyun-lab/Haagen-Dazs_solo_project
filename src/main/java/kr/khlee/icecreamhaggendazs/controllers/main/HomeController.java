@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -35,7 +34,7 @@ public class HomeController{
         model.addAttribute("singleProducts", singleProducts);
         model.addAttribute("giftProducts", giftProducts);
 
-        return "home/recommended";
+        return "recommended/recommended";
     }
 
     @GetMapping("/recommended_single")
@@ -44,7 +43,7 @@ public class HomeController{
 
         model.addAttribute("singleProducts", singleProducts);
 
-        return "home/recommended_single";
+        return "recommended/recommended_single";
 
     }
 
@@ -54,37 +53,8 @@ public class HomeController{
 
         model.addAttribute("giftProducts", giftProducts);
 
-        return "home/recommended_gift";
+        return "recommended/recommended_gift";
 
-    }
-
-    @GetMapping("/products")
-    public String productsPage(Model model) {
-
-        List<Product> products = productService.SelectAllProducts();
-
-        model.addAttribute("products", products);
-        return "home/products";
-    }
-
-    @GetMapping("/products/{category}")
-    public String productsByCategory(@PathVariable("category") String category, Model model) {
-        List<Product> products = productService.SelectByCategory(category);
-
-        model.addAttribute("products", products);
-        model.addAttribute("category", category); // 뷰에서 타이틀/탭 표시용
-        return "home/products"; // 기존 products.html 재사용
-    }
-
-    @GetMapping("/products/products_detail/{id}")
-    public String productsDetailPage(Model model,
-                                     @PathVariable (value = "id", required = false) int id) {
-
-        Product product = productService.SelectById(id);
-
-        model.addAttribute("product", product);
-
-        return "home/products_detail";
     }
 
     @GetMapping("/membership")

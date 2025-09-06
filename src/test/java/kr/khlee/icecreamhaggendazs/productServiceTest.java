@@ -80,4 +80,9 @@ public class productServiceTest {
         log.info(String.valueOf(count));
     }
 
+    @Test
+    void SearchProducts() throws Exception{
+        String keyword = "케이크";
+        log.info(productService.SearchProducts(keyword).toString());
+    }
 }
