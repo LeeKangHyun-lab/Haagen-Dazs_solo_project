@@ -41,6 +41,74 @@ body {
   align-items: center;
 }
 
+.hd-megamenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;          /* 화면 전체 */
+    background: #fff;
+    border-top: 1px solid #ddd;
+    z-index: 9999;
+    padding: 40px 0;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+}
+
+.hd-megamenu.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 내부 콘텐츠 - container 제거 */
+.mega-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 60px;       /* 좌우 여백 */
+    box-sizing: border-box;
+    max-width: none;
+}
+
+
+
+
+/* 각 컬럼 */
+.mega-column {
+    flex: 1;
+    min-width: 160px;
+    padding: 0 20px;
+    border-left: 1px solid #eee; /* 구분선 */
+}
+
+.mega-column:first-child {
+    border-left: none; /* 첫 컬럼은 선 제거 */
+}
+
+.mega-column h4 {
+    font-size: 16px;
+    margin-bottom: 12px;
+    font-weight: bold;
+    color: #222;
+}
+
+.mega-column a {
+    display: block;
+    margin: 6px 0;
+    text-decoration: none;
+    color: #555;
+    font-size: 14px;
+    transition: color 0.2s;
+}
+
+.mega-column a:hover {
+    color: #a6192e; /* 하겐다즈 포인트 컬러 */
+}
+
+
+
+
 /* 모든 제품 메뉴바 */
 /* 기존 secondbar 수정 */
 .secondbar .top-center {
@@ -248,8 +316,8 @@ html, body {
   overflow: visible;
 }
 .main-slider {
-  width: 100vw;             
-  height: 400px;            
+  width: 100vw;
+  height: 400px;
   position: relative;
 }
 
@@ -261,7 +329,7 @@ html, body {
 .swiper-slide img {
   width: 100%;
   height: 100%;
-  object-fit: cover;        
+  object-fit: cover;
   display: block;
 }
 
@@ -458,7 +526,7 @@ html, body {
 }
 
 .campaign-media {
-  flex: 2; 
+  flex: 2;
   display: flex;
   justify-content: flex-end;
 }
