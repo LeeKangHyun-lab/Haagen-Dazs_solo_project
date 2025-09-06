@@ -26,37 +26,6 @@ public class HomeController{
         return "home/index";
     }
 
-    @GetMapping("/recommended")
-    public String recommendedProducts(Model model) {
-        List<Product> singleProducts = productService.SelectSingle();
-        List<Product> giftProducts = productService.SelectGift();
-
-        model.addAttribute("singleProducts", singleProducts);
-        model.addAttribute("giftProducts", giftProducts);
-
-        return "recommended/recommended";
-    }
-
-    @GetMapping("/recommended_single")
-    public String recommendedSingleAll(Model model) {
-        List<Product> singleProducts = productService.SelectSingleAll();
-
-        model.addAttribute("singleProducts", singleProducts);
-
-        return "recommended/recommended_single";
-
-    }
-
-    @GetMapping("/recommended_gift")
-    public String recommendedGiftAll(Model model) {
-        List<Product> giftProducts = productService.SelectGiftAll();
-
-        model.addAttribute("giftProducts", giftProducts);
-
-        return "recommended/recommended_gift";
-
-    }
-
     @GetMapping("/membership")
     public String membershipPage() {
         return "home/membership";
