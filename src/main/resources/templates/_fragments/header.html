@@ -4,10 +4,10 @@
     <div class="hd-topbar">
         <div class="container">
             <div class="top-left">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
-                <a href="#"><i class="fa-regular fa-comment-dots"></i></a>
+                <a href="https://www.facebook.com/HaagenDazsKR/?locale=ko_KR"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/haagendazskorea/"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/channel/UCjm0QjnqZg7j1L1fF9jBXdQ"><i class="fab fa-youtube"></i></a>
+                <a href="https://pf.kakao.com/_AYskxb"><i class="fa-regular fa-comment-dots"></i></a>
             </div>
             <div class="top-right">
                 <a href="#">로그인</a>
@@ -39,6 +39,7 @@
                 <div class="mega-top">
                     <i class="fa-solid fa-xmark" id="menu-close"></i>
                 </div>
+                <!-- container 제거 -->
                 <div class="mega-content">
                     <div class="mega-column">
                         <h4>추천제품</h4>
@@ -72,7 +73,8 @@
             </div>
 
 
-    <nav class="hd-gnb">
+
+            <nav class="hd-gnb">
                 <ul>
                     <!-- 추천제품 -->
                     <li class="has-sub">
@@ -121,16 +123,30 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const menuToggle = document.getElementById("menu-toggle");
-        const menuClose = document.getElementById("menu-close");
         const megamenu = document.getElementById("megamenu");
 
         menuToggle.addEventListener("click", function() {
-            megamenu.classList.add("active");
-        });
+            megamenu.classList.toggle("active");
 
+            // 아이콘 토글
+            if (megamenu.classList.contains("active")) {
+                menuToggle.classList.remove("fa-bars");
+                menuToggle.classList.add("fa-xmark");
+            } else {
+                menuToggle.classList.remove("fa-xmark");
+                menuToggle.classList.add("fa-bars");
+            }
+
+        const menuClose = document.getElementById("menu-close");
         menuClose.addEventListener("click", function() {
             megamenu.classList.remove("active");
         });
+
+    });
+
+
+
+
     });
 
 </script>
