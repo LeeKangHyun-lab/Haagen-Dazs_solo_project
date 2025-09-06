@@ -24,4 +24,5 @@ public interface ProductService {
 
     public int getProductCount(String category) throws Exception;
 
+    public List<Product> SearchProducts(String keyword);
 }

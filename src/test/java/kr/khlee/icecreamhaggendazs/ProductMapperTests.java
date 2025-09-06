@@ -89,4 +89,11 @@ public class ProductMapperTests {
 
         log.info(String.valueOf(count));
     }
+
+    @Test
+    void searchProducts(){
+        String keyword = "케이크";
+
+        log.info(String.valueOf(productMapper.SearchProducts(keyword)));
+    }
 }

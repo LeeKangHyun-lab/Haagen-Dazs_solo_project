@@ -111,5 +111,12 @@ public interface ProductMapper {
     @Results(id = "getAllProductCount")
     public int getAllProductCount();
 
+    @Select("SELECT id, name, price, original_price, " +
+            "description, image_url, category, " +
+            "created_at " +
+            "FROM products " +
+            "WHERE name LIKE concat('%', #{keyword}, '%')")
+    @Results(id = "searchProducts")
+    public List<Product> SearchProducts(@Param("keyword") String keyword);
 
 }

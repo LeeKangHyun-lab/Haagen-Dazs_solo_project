@@ -71,5 +71,10 @@ public class ProductServiceImpl implements ProductService {
         return count;
     }
 
+    @Override
+    public List<Product> SearchProducts(String keyword) {
+        return productMapper.SearchProducts(keyword);
+    }
+
 
 }
