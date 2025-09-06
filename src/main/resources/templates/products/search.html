@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="~{_fragments/_head :: my-head('상품목록')}" />
+    <link rel="stylesheet" th:href="@{/assets/css/main.css}" />
+</head>
+<body>
+<th:block th:replace="~{_fragments/header}" />
+
+<main class="product-wrapper">
+
+    <!-- 제품 검색 결과 -->
+    <section class="product-section">
+        <h2 class="section-title">제품 검색결과</h2>
+        <div class="all-products">
+            <div class="product-card-all" th:each="p : ${products}">
+                <a th:href="@{'/products/products_detail/' + ${p.id}}">
+                    <img th:src="${p.imageUrl}" th:alt="${p.name}">
+                    <div class="product-info-all">
+                        <p class="title" th:text="${p.name}"></p>
+                        <p class="price">
+                            <span class="original" th:text="|₩${p.originalPrice}원|"></span>
+                            <span class="sale" th:text="|₩${p.price}원|"></span>
+                        </p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+</main>
+
+<th:block th:replace="~{_fragments/_footer}" />
+</body>
+</html>
