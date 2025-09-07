@@ -40,6 +40,27 @@
         </div>
     </div>
 
+    <!-- 페이지 번호 -->
+    <ul class="pagination">
+        <!-- 이전 페이지 이동 버튼 -->
+        <li th:if="${pageHelper.prevPage > 0}">
+            <a th:href="@{/products/{category}(category=${category}, keyword=${keyword}, page=${pageHelper.prevPage})}">«</a>
+        </li>
+        <li th:unless="${pageHelper.prevPage > 0}"><a>«</a></li>
+
+        <!-- 페이지 번호 링크 -->
+        <li th:each="i : ${#numbers.sequence(pageHelper.startPage, pageHelper.endPage)}">
+            <a th:if="${i == pageHelper.nowPage}" class="active" th:text="${i}"></a>
+            <a th:unless="${i == pageHelper.nowPage}" th:text="${i}"
+               th:href="@{/products/{categoryId}(categoryId=${categoryId}, keyword=${keyword}, page=${i})}"></a>
+        </li>
+
+        <!-- 다음 페이지 이동 버튼 -->
+        <li th:if="${pageHelper.nextPage > 0}">
+            <a th:href="@{/products/{categoryId}(categoryId=${categoryId}, keyword=${keyword}, page=${pageHelper.nextPage})}">»</a>
+        </li>
+        <li th:unless="${pageHelper.nextPage > 0}"><a>»</a></li>
+    </ul>
 
 
 
