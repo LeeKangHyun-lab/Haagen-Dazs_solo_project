@@ -2,13 +2,14 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <th:block th:replace="~{_fragments/_head :: my-head('회원가입')}" />
-    <link rel="stylesheet" th:href="@{/assets/css/account.css}" />
+    <th:block th:replace="~{_fragments/_head :: my-head('로그인')}" />
+    <link rel="stylesheet" th:href="@{/assets/css/account.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/main.css}" />
+
 </head>
 
 <body>
-<!-- 로딩바 -->
-<img th:src="@{/assets/img/loading.gif}" id="loader" />
+<th:block th:replace="~{_fragments/header}" />
 
 <!-- 회원가입 폼 -->
 <div class="account-container">

@@ -93,3 +93,171 @@ body {
 .form-footer a:hover {
     text-decoration: underline;
 }
+
+:root {
+    --primary-color: #7b1430; /* 하겐다즈 버건디 */
+    --border-color: #ddd;
+    --text-color: #333;
+    --background-color: #fff;
+    --input-height: 48px;
+    --font-base: "Noto Sans KR", sans-serif;
+}
+
+/* 전체 */
+body {
+    font-family: var(--font-base);
+    background: var(--background-color);
+    margin: 0;
+    padding: 0;
+}
+
+/* 컨테이너 */
+.account-container {
+    max-width: 600px;
+    margin: 80px auto;
+    padding: 30px 20px;
+    background: #fff;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+/* 제목 */
+.page-title {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary-color);
+    color: var(--text-color);
+}
+
+/* 입력 박스 */
+.input-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 8px;
+}
+
+.input-field {
+    flex: 1;
+    height: var(--input-height);
+    padding: 0 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+.input-field:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+/* 인라인 버튼 (중복 검사, 우편번호 찾기 등) */
+.inline-btn {
+    padding: 0 16px;
+    height: var(--input-height);
+    background: var(--primary-color);
+    color: #fff;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.inline-btn:hover {
+    background: #5e0f26;
+}
+
+/* 성별 라디오 */
+.gender-container {
+    gap: 20px;
+    font-size: 15px;
+    color: var(--text-color);
+}
+
+.gender-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.gender-input {
+    display: none;
+}
+
+.gender-custom {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    position: relative;
+}
+
+.gender-input:checked + .gender-custom {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/* 회원가입 버튼 */
+.btn {
+    width: 100%;
+    height: var(--input-height);
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.btn:hover {
+    background: #5e0f26;
+}
+
+/* 하단 */
+.form-footer {
+    margin-top: 25px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+.form-footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.form-footer a:hover {
+    text-decoration: underline;
+}
+
+/* 파일 업로드 */
+input[type="file"].input-field {
+    padding: 10px;
+}
+
+/* 반응형 */
+@media (max-width: 480px) {
+    .account-container {
+        margin: 40px auto;
+        padding: 20px 15px;
+    }
+
+    .input-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .inline-btn {
+        width: 100%;
+        margin-top: 6px;
+    }
+}

@@ -782,9 +782,8 @@ html, body {
   /*margin-top: 48px;*/
 }
 
-form {
+.form {
   width: 100%;
-  background-color: #f9f1da;
   height: 20%;
 }
 
@@ -793,6 +792,7 @@ form {
   padding: 30px 30px;
   display: flex;
   justify-content: center;
+  background-color: #f9f1da;
 }
 
 .membership-login a {

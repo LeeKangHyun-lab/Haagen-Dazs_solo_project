@@ -2,12 +2,14 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <th:block th:replace="~{_fragments/_head :: my-head('비밀번호 재발급')}"/>
+    <th:block th:replace="~{_fragments/_head :: my-head('로그인')}" />
     <link rel="stylesheet" th:href="@{/assets/css/account.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/main.css}" />
+
 </head>
+
 <body>
-<!-- 로딩바 -->
-<img th:src="@{/assets/img/loading.gif}" id="loader" />
+<th:block th:replace="~{_fragments/header}" />
 
 <div class="account-container">
     <h2 class="page-title">비밀번호 재발급</h2>
@@ -28,8 +30,8 @@
 
 
 <div class="form-footer">
-    <p>로그인이 필요하신가요? <a href="@{/account/login}">로그인</a></p>
-    <p>계정이 없으신가요? <a href="@{/account/join}">회원가입</a></p>
+    <p>로그인이 필요하신가요? <a th:href="@{/account/login}">로그인</a></p>
+    <p>계정이 없으신가요? <a th:href="@{/account/join}">회원가입</a></p>
 </div>
 </div>
 

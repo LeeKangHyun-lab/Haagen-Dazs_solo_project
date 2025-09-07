@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title th:replace="~{_fragments/_head :: my-head ('회원정보 수정')}" />
-    <link rel="stylesheet" th:href="@{/assets/css/account.css}" />
-</head>
-<body>
+    <th:block th:replace="~{_fragments/_head :: my-head('로그인')}" />
+    <link rel="stylesheet" th:href="@{/assets/css/account.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/main.css}" />
 
-    <img th:src="@{/assets/img/loading.gif}" id="loader" />
+</head>
+
+<body>
+<th:block th:replace="~{_fragments/header}" />
 
     <div class="account-container edit">
         <h2 class="page-title">내 정보 수정</h2>
