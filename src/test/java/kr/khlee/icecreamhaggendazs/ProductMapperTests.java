@@ -26,7 +26,7 @@ public class ProductMapperTests {
 
     @Test
     void SelectAllProducts() {
-        List<Product> products = productMapper.SelectAllProducts();
+        List<Product> products = productMapper.SelectAllProducts(0, 20);
 
         log.info(products.toString());
     }
@@ -47,7 +47,7 @@ public class ProductMapperTests {
 
     @Test
     void SelectCakeAll(){
-        List<Product> products = productMapper.SelectCakeAll();
+        List<Product> products = productMapper.SelectCakeAll(0, 20);
 
         log.info(products.toString());
     }
@@ -61,7 +61,7 @@ public class ProductMapperTests {
 
     @Test
     void SelectSingleAll(){
-        List<Product> products = productMapper.SelectSingleAll();
+        List<Product> products = productMapper.SelectSingleAll(0, 20);
 
         log.info(products.toString());
     }
@@ -69,7 +69,7 @@ public class ProductMapperTests {
     @Test
     void SelectByCategory(){
         String input = "파인트";
-        List<Product> products = productMapper.SelectByCategory(input);
+        List<Product> products = productMapper.SelectByCategory(input, 0, 20);
 
         log.info(products.toString());
     }
@@ -81,6 +81,13 @@ public class ProductMapperTests {
         int count = productMapper.getProductCount(input);
 
         log.info(String.valueOf(count));
+    }
+
+    @Test
+    void getAllCategories(){
+        List<Product> categories = productMapper.getAllCategories();
+
+        log.info(categories.toString());
     }
 
     @Test
@@ -96,4 +103,11 @@ public class ProductMapperTests {
 
         log.info(String.valueOf(productMapper.SearchProducts(keyword)));
     }
+
+    @Test
+    void getAllSingleCount(){
+        int count = productMapper.getAllSingleCount();
+        log.info(String.valueOf(count));
+    }
+
 }

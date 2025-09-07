@@ -25,7 +25,7 @@ public class productServiceTest {
 
     @Test
     void selectAllProducts() throws Exception{
-        List<Product> products = productService.SelectAllProducts();
+        List<Product> products = productService.SelectAllProducts( 0, 20);
 
         log.info(products.toString());
     }
@@ -46,7 +46,7 @@ public class productServiceTest {
 
     @Test
     void selectCakeAll() throws Exception{
-        List<Product> product = productService.SelectGiftAll();
+        List<Product> product = productService.SelectGiftAll(0, 20);
 
         log.info(product.toString());
     }
@@ -59,14 +59,14 @@ public class productServiceTest {
     }
     @Test
     void selectSingleAll() throws Exception{
-        List<Product> product = productService.SelectSingleAll();
+        List<Product> product = productService.SelectSingleAll(0, 20);
 
         log.info(product.toString());
     }
 
     @Test
-    void selectSingleProduct() throws Exception{
-        List<Product> product = productService.SelectByCategory("파인트");
+    void selectbyCategory() throws Exception{
+        List<Product> product = productService.SelectByCategory("파인트", 0, 20);
 
         log.info(product.toString());
     }
@@ -81,8 +81,25 @@ public class productServiceTest {
     }
 
     @Test
+    void getAllCategories() throws Exception{
+        List<Product> categories = productService.getAllCategories();
+
+        log.info(categories.toString());
+    }
+
+    @Test
     void SearchProducts() throws Exception{
         String keyword = "케이크";
         log.info(productService.SearchProducts(keyword).toString());
+    }
+
+    @Test
+    void getAllSingleCount(){
+        System.out.println(productService.getAllSingleCount());
+    }
+
+    @Test
+    void getAllGiftCount(){
+        System.out.println(productService.getAllGiftCount());
     }
 }

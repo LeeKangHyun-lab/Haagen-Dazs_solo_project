@@ -25,9 +25,10 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> SelectAllProducts() {
-        return productMapper.SelectAllProducts();
+    public List<Product> SelectAllProducts(int offset, int listCount) {
+        return productMapper.SelectAllProducts(offset, listCount);
     }
+
 
     @Override
     public Product SelectById(int id) {
@@ -35,8 +36,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> SelectGiftAll() {
-        return productMapper.SelectCakeAll();
+    public List<Product> SelectGiftAll(int offset, int listCount) {
+        return productMapper.SelectCakeAll(offset, listCount);
     }
 
     @Override
@@ -45,8 +46,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> SelectSingleAll() {
-        return productMapper.SelectSingleAll();
+    public List<Product> SelectSingleAll(int offset, int listCount) {
+        return productMapper.SelectSingleAll(offset, listCount);
     }
 
     @Override
@@ -55,8 +56,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> SelectByCategory(String category) {
-        return productMapper.SelectByCategory(category);
+    public List<Product> SelectByCategory(String category, int offset, int listCount) {
+        return productMapper.SelectByCategory(category, offset, listCount);
     }
 
     @Override
@@ -72,8 +73,23 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<Product> getAllCategories() {
+        return productMapper.getAllCategories();
+    }
+
+    @Override
     public List<Product> SearchProducts(String keyword) {
         return productMapper.SearchProducts(keyword);
+    }
+
+    @Override
+    public int getAllSingleCount() {
+        return productMapper.getAllSingleCount();
+    }
+
+    @Override
+    public int getAllGiftCount() {
+        return productMapper.getAllGiftCount();
     }
 
 
