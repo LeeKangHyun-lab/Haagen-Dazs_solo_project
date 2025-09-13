@@ -8,20 +8,27 @@
   <th:block th:replace="~{_fragments/header}" />
     <main>
       <div class="swiper main-slider">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <img src="/assets/img/m-1.jpg" alt="슬라이드1" />
+          <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                  <a th:href="@{/products/products_detail/21}">
+                      <img src="/assets/img/m-1.jpg" alt="슬라이드1" />
+                  </a>
+              </div>
+              <div class="swiper-slide">
+                  <a th:href="@{/products}">
+                      <img src="/assets/img/m-2.jpg" alt="슬라이드2" />
+                  </a>
+              </div>
+              <div class="swiper-slide">
+                  <a th:href="@{/products/products_detail/1}">
+                      <img src="/assets/img/m-3.jpg" alt="슬라이드3" />
+                  </a>
+              </div>
           </div>
-          <div class="swiper-slide">
-            <img src="/assets/img/m-2.jpg" alt="슬라이드2" />
-          </div>
-          <div class="swiper-slide">
-            <img src="/assets/img/m-3.jpg" alt="슬라이드3" />
-          </div>
-        </div>
 
-      
-        <div class="swiper-button-prev"></div>
+
+
+          <div class="swiper-button-prev"></div>
         <div class="swiper-button-next"></div>
         <div class="swiper-pagination"></div>
       </div>

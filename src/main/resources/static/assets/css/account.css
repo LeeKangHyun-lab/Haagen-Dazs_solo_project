@@ -1,243 +1,191 @@
-@charset "utf-8";
-
 :root {
-    /* 색상 변수 */
-    --background-color: #f4f6f9;
-    --container-bg-color: #fff;
-    --box-shadow-color: rgba(0, 0, 0, 0.1);
-    --primary-color: #4caf50;
-    --primary-color-hover: #45a049;
-    --border-color: #ccc;
+    --primary-color: #7b1430; /* 하겐다즈 버건디 */
+    --border-color: #ddd;
     --text-color: #333;
-    --link-color: #4caf50;
-
-    /* 크기 및 패딩 변수 */
-    --container-padding: 40px;
-    --container-border-radius: 10px;
-    --input-padding: 12px;
-    --button-padding: 14px;
-    --border-radius-small: 4px;
-    --border-radius-large: 10px;
-    --gap-size: 20px;
-    --margin-bottom: 20px;
-
-    /* 글꼴 크기 변수 */
-    --font-size-base: 16px;
-    --font-size-heading: 24px;
-
-    /* 미디어 쿼리 */
-    --media-container-padding: 20px;
+    --background-color: #fff;
+    --input-height: 48px;
+    --font-base: "Noto Sans KR", sans-serif;
 }
 
-/* 기본 설정 */
+/* 전체 */
 body {
-    font-family: "Arial", sans-serif;
-    background-color: var(--background-color);
+    font-family: var(--font-base);
+    background: var(--background-color);
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
 }
 
+/* 컨테이너 (로그인, 회원가입, 가입완료 공통) */
 .account-container {
-    background-color: var(--container-bg-color);
-    padding: var(--container-padding);
-    border-radius: var(--container-border-radius);
-    box-shadow: 0 6px 15px var(--box-shadow-color);
-    width: 100%;
-    max-width: 400px;
+    max-width: 600px;
+    margin: 80px auto;
+    padding: 40px 30px;
+    background: #fff;
+    text-align: center;
     box-sizing: border-box;
-    padding-left: var(--media-container-padding);
-    padding-right: var(--media-container-padding);
-
-    /* 공통 - 페이지 제목 */
-    .page-title {
-        text-align: center;
-        color: var(--primary-color);
-        font-size: var(--font-size-heading);
-        margin-bottom: var(--margin-bottom);
-    }
-
-    /* 공통 - 하단부 */
-    .form-footer {
-        text-align: center;
-        margin-top: var(--margin-bottom);
-
-        a {
-            color: var(--link-color);
-            text-decoration: none;
-
-            &:hover {
-                text-decoration: underline;
-            }
-        }
-    }
-
-    /* 공통 - 버튼 */
-    .btn {
-        width: 100%;
-        padding: var(--button-padding);
-        background-color: var(--primary-color);
-        color: white;
-        border: none;
-        border-radius: var(--border-radius-small);
-        cursor: pointer;
-        font-size: var(--font-size-base);
-        margin-top: var(--margin-bottom);
-
-        &:hover {
-            background-color: var(--primary-color-hover);
-        }
-    }
-
-    /* before.html, after.html - 로그인 전,후 화면 */
-    &.account {
-        text-align: center;
-        padding: 20px;
-
-        .btn-container {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            margin-top: 20px;
-        }
-    }
-
-    /* join.html */
-    .input-container {
-        position: relative;
-        margin-bottom: 15px;
-        display: flex;
-
-        /* 입력 필드 */
-        .input-field {
-            flex: 1;
-            padding: var(--input-padding);
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius-small) 0 0 var(--border-radius-small);
-            box-sizing: border-box;
-            font-size: var(--font-size-base);
-
-            &:focus {
-                border-color: var(--primary-color);
-                outline: none;
-            }
-        }
-
-        .inline-btn {
-            padding: var(--input-padding);
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 0 var(--border-radius-small) var(--border-radius-small) 0;
-            cursor: pointer;
-            font-size: var(--font-size-base);
-
-            &:hover {
-                background-color: var(--primary-color-hover);
-            }
-        }
-
-        /* 성별 라디오 버튼 스타일 */
-        &.gender-container {
-            display: flex;
-            align-items: center;
-            gap: var(--gap-size);
-            padding: 10px 0;
-
-            .gender-label {
-                display: flex;
-                align-items: center;
-                cursor: pointer;
-                font-size: var(--font-size-base);
-                color: var(--text-color);
-
-                .gender-input {
-                    display: none;
-                }
-
-                .gender-input + .gender-custom {
-                    display: inline-block;
-                    width: 16px;
-                    height: 16px;
-                    margin-right: 8px;
-                    border: 2px solid var(--border-color);
-                    border-radius: 50%;
-                    position: relative;
-                }
-
-                .gender-input:checked + .gender-custom {
-                    border-color: var(--primary-color);
-                    background-color: var(--primary-color);
-                }
-            }
-        }
-    }
-
-    /** 회원정보 수정시 추가 */
-    &.edit {
-        input[disabled] {
-            cursor: not-allowed;
-        }
-
-        .info {
-            flex-direction: column;
-
-            input {
-                flex-basis: 100%;
-            }
-
-            p {
-                font-size: 12px;
-                margin-top: 5px;
-                color: #f22;
-                padding-left: 5px;
-                font-style: italic;
-            }
-
-            .img-container {
-                display: flex;
-                align-items: center;
-
-                img {
-                    display: block;
-                    object-fit: cover;
-                    margin: 10px;
-                    border-radius: 50%;
-                    width: 100px;
-                }
-
-                label {
-                    display: block;
-                    font-size: 12px;
-                    margin: 5px 0;
-                    align-items: center;
-                }
-            }
-        }
-    }
+    border: 1px solid #f0f0f0;
+    border-radius: 6px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
 }
 
-.user-ico {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
+/* 제목 */
+.page-title {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary-color);
+    color: var(--text-color);
+    display: inline-block;
+}
+
+/* 입력 박스 */
+.input-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 8px;
+}
+
+.input-field {
+    flex: 1;
+    height: var(--input-height);
+    padding: 0 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+.input-field:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+/* 인라인 버튼 (중복검사, 우편번호 찾기 등) */
+.inline-btn {
+    padding: 0 16px;
+    height: var(--input-height);
+    background: var(--primary-color);
+    color: #fff;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.inline-btn:hover {
+    background: #5e0f26;
+}
+
+/* 성별 라디오 */
+.gender-container {
+    gap: 20px;
+    font-size: 15px;
+    color: var(--text-color);
+}
+
+.gender-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.gender-input {
+    display: none;
+}
+
+.gender-custom {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
+    border: 2px solid var(--border-color);
     border-radius: 50%;
-    margin: 20px auto;
+    position: relative;
 }
 
-/* 미디어 쿼리: 화면 너비가 400px 이하일 때 */
-@media (max-width: 400px) {
-    .container {
+.gender-input:checked + .gender-custom {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/* 버튼 (로그인/회원가입/완료공통) */
+.btn {
+    display: inline-block;
+    width: 100%;
+    height: var(--input-height);
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    text-decoration: none;
+    line-height: var(--input-height);
+}
+
+.btn:hover {
+    background: #5e0f26;
+}
+
+/* 버튼 컨테이너 (가입완료 페이지 등) */
+.btn-container {
+    margin-top: 30px;
+}
+
+/* 하단 푸터 링크 */
+.form-footer {
+    margin-top: 25px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+.form-footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.form-footer a:hover {
+    text-decoration: underline;
+}
+
+/* 파일 업로드 필드 */
+input[type="file"].input-field {
+    padding: 10px;
+}
+
+/* 반응형 */
+@media (max-width: 480px) {
+    .account-container {
+        margin: 40px auto;
+        padding: 20px 15px;
+    }
+
+    .input-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .inline-btn {
         width: 100%;
-        padding-left: var(--media-container-padding);
-        padding-right: var(--media-container-padding);
+        margin-top: 6px;
     }
 }
 
+/* 프로필/가입완료 이미지 */
+.account-container img {
+    max-width: 200px;   /* 최대 너비 제한 */
+    height: auto;       /* 비율 유지 */
+    display: block;
+    margin: 0 auto 20px; /* 가운데 정렬 + 아래쪽 여백 */
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
 
 #loader {
     width: 100px;

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="~{_fragments/_head :: my-head('장바구니')}" />
+    <link rel="stylesheet" th:href="@{/assets/css/main.css}" />
+    <link rel="stylesheet" th:href="@{/assets/css/cart.css}" />
+</head>
+<body>
+<th:block th:replace="~{_fragments/header}" />
+
+<main>
+    <div class="cart-container">
+        <h2>장바구니</h2>
+
+        <table id="cart-table">
+            <thead>
+            <tr>
+                <th>상품명</th>
+                <th>가격</th>
+                <th>수량</th>
+                <th>합계</th>
+                <th>삭제</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- JS로 동적 렌더링 -->
+            </tbody>
+        </table>
+
+        <div class="total">
+            총 금액: <span id="total-price">₩0</span>
+        </div>
+
+        <div class="cart-actions">
+            <button onclick="checkout()">주문하기</button>
+        </div>
+    </div>
+</main>
+
+<th:block th:replace="~{_fragments/_footer}" />
+
+<script>
+    async function loadCart() {
+        try {
+            const res = await fetch("/api/cart", {
+                method: "GET",
+                credentials: "include"
+            });
+            if (!res.ok) {
+                throw new Error(await res.text());
+            }
+            const items = await res.json();
+
+            const tbody = document.querySelector("#cart-table tbody");
+            tbody.innerHTML = "";
+
+            let total = 0;
+
+            items.forEach(item => {
+                const subtotal = item.product.price * item.quantity;
+                total += subtotal;
+
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+              <td>${item.product.name}</td>
+              <td>₩${item.product.price.toLocaleString()}</td>
+              <td>
+                <div class="quantity-controls">
+                  <button onclick="updateQuantity(${item.id}, ${item.quantity - 1})">-</button>
+                  <input type="text" value="${item.quantity}" readonly />
+                  <button onclick="updateQuantity(${item.id}, ${item.quantity + 1})">+</button>
+                </div>
+              </td>
+              <td>₩${subtotal.toLocaleString()}</td>
+              <td><button onclick="deleteItem(${item.id})">삭제</button></td>
+            `;
+                tbody.appendChild(tr);
+            });
+
+            document.getElementById("total-price").innerText = `₩${total.toLocaleString()}`;
+
+        } catch (err) {
+            alert("장바구니 불러오기 실패: " + err.message);
+        }
+    }
+
+    async function updateQuantity(id, newQuantity) {
+        if (newQuantity <= 0) {
+            return deleteItem(id);
+        }
+        try {
+            const res = await fetch(`/api/cart/${id}?quantity=${newQuantity}`, {
+                method: "PUT",
+                credentials: "include"
+            });
+            if (!res.ok) throw new Error(await res.text());
+            loadCart();
+        } catch (err) {
+            alert("수량 변경 실패: " + err.message);
+        }
+    }
+
+    async function deleteItem(id) {
+        try {
+            const res = await fetch(`/api/cart/${id}`, {
+                method: "DELETE",
+                credentials: "include"
+            });
+            if (!res.ok) throw new Error(await res.text());
+            loadCart();
+        } catch (err) {
+            alert("삭제 실패: " + err.message);
+        }
+    }
+
+
+    function checkout() {
+        alert("주문하기 기능은 준비 중입니다 :)");
+    }
+
+    // 페이지 로딩 시 장바구니 불러오기
+    loadCart();
+</script>
+</body>
+</html>

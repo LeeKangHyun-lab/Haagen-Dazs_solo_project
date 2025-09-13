@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:replace="~{_fragments/_head :: my-head('MyShop')}" />
+    <th:block th:replace="~{_fragments/_head :: my-head('로그인')}" />
     <link rel="stylesheet" th:href="@{/assets/css/account.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/main.css}" />
+
 </head>
+
 <body>
+<img th:src="@{/assets/img/loading.gif}" id="loader"/>
+
+<th:block th:replace="~{_fragments/header}" />
     <div class="account-container account" th:if="${session.memberInfo == null}">
         <h2 class="page-title">환영합니다!</h2>
         <p>로그인 후 다양한 서비스를 이용하실 수 있습니다.</p>

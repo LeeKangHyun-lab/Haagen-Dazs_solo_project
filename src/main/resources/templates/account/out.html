@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:replace="~{_fragments/_head :: my-head ('회원탈퇴')}" />
+    <th:block th:replace="~{_fragments/_head :: my-head('로그인')}" />
     <link rel="stylesheet" th:href="@{/assets/css/account.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/main.css}" />
+
 </head>
+
 <body>
+<th:block th:replace="~{_fragments/header}" />
 <!-- 로딩바 -->
 <img th:src="@{/assets/img/loading.gif}" id="loader" />
 

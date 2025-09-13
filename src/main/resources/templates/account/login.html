@@ -4,11 +4,14 @@
 <head>
     <th:block th:replace="~{_fragments/_head :: my-head('로그인')}" />
     <link rel="stylesheet" th:href="@{/assets/css/account.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/main.css}" />
+
 </head>
 
 <body>
-<!-- 로딩바 -->
-<img th:src="@{/assets/img/loading.gif}" id="loader" />
+<img th:src="@{/assets/img/loading.gif}" id="loader"/>
+
+<th:block th:replace="~{_fragments/header}" />
 
 <div class="account-container">
     <h2 class="page-title">로그인</h2>

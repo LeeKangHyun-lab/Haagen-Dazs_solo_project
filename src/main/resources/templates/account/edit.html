@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title th:replace="~{_fragments/_head :: my-head ('회원정보 수정')}" />
-    <link rel="stylesheet" th:href="@{/assets/css/account.css}" />
-</head>
-<body>
+    <th:block th:replace="~{_fragments/_head :: my-head('로그인')}" />
+    <link rel="stylesheet" th:href="@{/assets/css/account.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/main.css}" />
 
-    <img th:src="@{/assets/img/loading.gif}" id="loader" />
+</head>
+
+<body>
+<img th:src="@{/assets/img/loading.gif}" id="loader"/>
+
+<th:block th:replace="~{_fragments/header}" />
 
     <div class="account-container edit">
         <h2 class="page-title">내 정보 수정</h2>
@@ -128,8 +132,12 @@
 
     <th:block th:replace="~{_fragments/_scripts :: my-scripts}" />
     <!-- 다음 우편번호 검색 : https://postcode.map.daum.net/guide -->
-    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
+    <!-- 카카오 우편번호 API -->
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+    <!-- UtilHelper.js (daum.Postcode를 내부에서 사용) -->
+    <script src="/assets/js/UtilHelper.js"></script>
     <script>
         /**
          * [삭제] 파일 삭제 여부 체크에 따른 업로드 필드 활성화 처리
@@ -187,7 +195,7 @@
         /** 우편번호 검색 이벤트 */
         document.querySelector("#find-postcode").addEventListener("click", async (e) => {
             e.preventDefault();
-            uiHelper.findPostCode();
+            utilHelper.findPostCode();
         });
 
         /** 회원가입 폼 제출 이벤트 */
@@ -261,6 +269,7 @@
             window.location = "[[@{/account}]]";
 
         });
+
 
     </script>
 </body>
