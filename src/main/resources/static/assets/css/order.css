@@ -1,0 +1,40 @@
+.order-ready {
+    max-width: 600px;
+    margin: 80px auto;
+    text-align: center;
+    padding: 40px;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    background: #fafafa;
+}
+
+.order-ready h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #800020; /* 하겐다즈 버건디 */
+}
+
+.order-ready p {
+    font-size: 16px;
+    margin: 10px 0;
+    color: #555;
+}
+
+.order-ready .actions {
+    margin-top: 30px;
+}
+
+.order-ready .actions a {
+    display: inline-block;
+    margin: 0 10px;
+    padding: 10px 20px;
+    background: #800020;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.order-ready .actions a:hover {
+    background: #a00030;
+}

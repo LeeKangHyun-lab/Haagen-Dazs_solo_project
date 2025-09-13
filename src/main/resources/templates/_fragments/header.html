@@ -10,11 +10,21 @@
                 <a href="https://pf.kakao.com/_AYskxb"><i class="fa-regular fa-comment-dots"></i></a>
             </div>
             <div class="top-right">
-                <a th:href="@{/account/login}">로그인</a>
-                <a th:href="@{/account/join}">회원가입</a>
-                <a href="#">장바구니</a>
-                <a href="#">주문/배송조회</a>
+                <th:block th:if="${session.memberInfo == null}">
+                    <a th:href="@{/account/login}">로그인</a>
+                    <a th:href="@{/account/join}">회원가입</a>
+                </th:block>
+
+                <th:block th:if="${session.memberInfo != null}">
+                    <a href="#" id="logout-btn">로그아웃</a>
+                    <a th:href="@{/account}">마이페이지</a>
+                </th:block>
+
+                <a th:href="@{/cart}">장바구니</a>
+                <a th:href="@{order/ready}">주문/배송조회</a>
             </div>
+
+
         </div>
     </div>
 
@@ -144,9 +154,23 @@
 
     });
 
-
-
-
     });
 
+    document.addEventListener("DOMContentLoaded", () => {
+        const logoutBtn = document.getElementById("logout-btn");
+        if (logoutBtn) {
+            logoutBtn.addEventListener("click", async (e) => {
+                e.preventDefault();
+                try {
+                    // 서버에 로그아웃 요청
+                    await fetch("/api/account/logout", { method: "GET" });
+                } catch (err) {
+                    console.error("로그아웃 실패:", err);
+                }
+                // 알림 띄우고 홈으로 이동
+                alert("로그아웃되었습니다.");
+                window.location.href = "/";
+            });
+        }
+    });
 </script>

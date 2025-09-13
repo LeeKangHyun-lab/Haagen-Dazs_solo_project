@@ -3,102 +3,6 @@
     --border-color: #ddd;
     --text-color: #333;
     --background-color: #fff;
-    --input-height: 50px;
-}
-
-/* 전체 레이아웃 */
-body {
-    font-family: "Noto Sans KR", sans-serif;
-    background: var(--background-color);
-    margin: 0;
-    padding: 0;
-}
-
-/* 로그인 컨테이너 */
-.account-container {
-    max-width: 400px;
-    margin: 100px auto;
-    padding: 40px 30px;
-    text-align: center;
-    background: #fff;
-    box-sizing: border-box;
-}
-
-/* 제목 */
-.page-title {
-    font-size: 22px;
-    font-weight: 600;
-    margin-bottom: 30px;
-    color: var(--text-color);
-    border-bottom: 2px solid var(--primary-color);
-    display: inline-block;
-    padding-bottom: 5px;
-}
-
-/* 입력 필드 */
-.input-container {
-    margin-bottom: 15px;
-}
-
-.input-field {
-    width: 100%;
-    height: var(--input-height);
-    padding: 0 12px;
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    font-size: 15px;
-    box-sizing: border-box;
-}
-
-.input-field:focus {
-    border-color: var(--primary-color);
-    outline: none;
-}
-
-/* 로그인 버튼 */
-.btn {
-    width: 100%;
-    height: var(--input-height);
-    background: var(--primary-color);
-    color: #fff;
-    font-size: 16px;
-    font-weight: bold;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
-.btn:hover {
-    background: #5e0f26; /* hover용 어두운 버건디 */
-}
-
-/* 하단 링크 */
-.form-footer {
-    margin-top: 20px;
-    font-size: 14px;
-    color: var(--text-color);
-    text-align: center;
-}
-
-.form-footer p {
-    margin: 6px 0;
-}
-
-.form-footer a {
-    color: var(--primary-color);
-    text-decoration: none;
-}
-
-.form-footer a:hover {
-    text-decoration: underline;
-}
-
-:root {
-    --primary-color: #7b1430; /* 하겐다즈 버건디 */
-    --border-color: #ddd;
-    --text-color: #333;
-    --background-color: #fff;
     --input-height: 48px;
     --font-base: "Noto Sans KR", sans-serif;
 }
@@ -111,25 +15,28 @@ body {
     padding: 0;
 }
 
-/* 컨테이너 */
+/* 컨테이너 (로그인, 회원가입, 가입완료 공통) */
 .account-container {
     max-width: 600px;
     margin: 80px auto;
-    padding: 30px 20px;
+    padding: 40px 30px;
     background: #fff;
-    text-align: left;
+    text-align: center;
     box-sizing: border-box;
+    border: 1px solid #f0f0f0;
+    border-radius: 6px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
 }
 
 /* 제목 */
 .page-title {
-    text-align: center;
     font-size: 22px;
     font-weight: 600;
     margin-bottom: 30px;
     padding-bottom: 10px;
     border-bottom: 2px solid var(--primary-color);
     color: var(--text-color);
+    display: inline-block;
 }
 
 /* 입력 박스 */
@@ -155,7 +62,7 @@ body {
     outline: none;
 }
 
-/* 인라인 버튼 (중복 검사, 우편번호 찾기 등) */
+/* 인라인 버튼 (중복검사, 우편번호 찾기 등) */
 .inline-btn {
     padding: 0 16px;
     height: var(--input-height);
@@ -204,8 +111,9 @@ body {
     border-color: var(--primary-color);
 }
 
-/* 회원가입 버튼 */
+/* 버튼 (로그인/회원가입/완료공통) */
 .btn {
+    display: inline-block;
     width: 100%;
     height: var(--input-height);
     background: var(--primary-color);
@@ -216,13 +124,20 @@ body {
     font-weight: bold;
     cursor: pointer;
     margin-top: 20px;
+    text-decoration: none;
+    line-height: var(--input-height);
 }
 
 .btn:hover {
     background: #5e0f26;
 }
 
-/* 하단 */
+/* 버튼 컨테이너 (가입완료 페이지 등) */
+.btn-container {
+    margin-top: 30px;
+}
+
+/* 하단 푸터 링크 */
 .form-footer {
     margin-top: 25px;
     text-align: center;
@@ -239,7 +154,7 @@ body {
     text-decoration: underline;
 }
 
-/* 파일 업로드 */
+/* 파일 업로드 필드 */
 input[type="file"].input-field {
     padding: 10px;
 }
@@ -260,4 +175,24 @@ input[type="file"].input-field {
         width: 100%;
         margin-top: 6px;
     }
+}
+
+/* 프로필/가입완료 이미지 */
+.account-container img {
+    max-width: 200px;   /* 최대 너비 제한 */
+    height: auto;       /* 비율 유지 */
+    display: block;
+    margin: 0 auto 20px; /* 가운데 정렬 + 아래쪽 여백 */
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+#loader {
+    width: 100px;
+    height: 100px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
 }
