@@ -8,7 +8,7 @@ import java.security.SecureRandom;
 public class UtilHelper {
     public String getRandomString(int length){
         if(length < 1){
-            throw new IllegalArgumentException("길이는 1ㅈ자리 이상이어야 합니다.");
+            throw new IllegalArgumentException("길이는 한자리 이상이어야 합니다.");
         }
 
         final String DATA = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";

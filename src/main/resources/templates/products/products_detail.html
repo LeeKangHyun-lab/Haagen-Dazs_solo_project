@@ -1,61 +1,100 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <th:block th:replace="~{_fragments/_head :: my-head('상품상세')}" />
-  <link rel="stylesheet" th:href="@{/assets/css/main.css}" />
+    <th:block th:replace="~{_fragments/_head :: my-head('상품상세')}" />
+    <link rel="stylesheet" th:href="@{/assets/css/main.css}" />
 </head>
 <body>
 <th:block th:replace="~{_fragments/header}" />
 
 <main>
-  <div class="product-detail">
-    <!-- 왼쪽: 상품 이미지 -->
-    <div class="product-image">
-      <img th:src="${product.imageUrl}" th:alt="${product.name}">
-    </div>
-
-    <!-- 오른쪽: 상품 정보 -->
-    <div class="product-detail-info">
-      <h2 th:text="${product.name}"></h2>
-
-      <div class="info-row">
-        <span class="label">소비자가</span>
-        <span class="original" th:text="|₩${product.originalPrice}|">₩17,900</span>
-      </div>
-
-      <div class="info-row">
-        <span class="label">판매가</span>
-        <span class="sale" th:text="|₩${product.price}|">₩17,900</span>
-      </div>
-
-      <div class="info-row">
-        <span class="label">택배배송</span>
-        <span>₩4,000 <small>(₩30,000 이상 구매 시 무료)</small></span>
-      </div>
-
-      <div class="info-row quantity">
-        <span class="label">상품수량</span>
-        <div class="quantity-controls">
-          <button type="button">-</button>
-          <input type="text" value="1">
-          <button type="button">+</button>
+    <div class="product-detail">
+        <!-- 왼쪽: 상품 이미지 -->
+        <div class="product-image">
+            <img th:src="${product.imageUrl}" th:alt="${product.name}">
         </div>
-      </div>
 
-      <div class="total">
-        총 상품금액: <span th:text="|₩${product.price}|">₩17,900</span>
-      </div>
+        <!-- 오른쪽: 상품 정보 -->
+        <div class="product-detail-info">
+            <h2 th:text="${product.name}"></h2>
 
-      <div class="actions">
-        <button class="buy-now">바로구매</button>
-        <button class="cart">장바구니</button>
-        <button class="wishlist">위시리스트</button>
-      </div>
+            <div class="info-row">
+                <span class="label">소비자가</span>
+                <span class="original" th:text="|₩${product.originalPrice}|">₩17,900</span>
+            </div>
+
+            <div class="info-row">
+                <span class="label">판매가</span>
+                <span class="sale" th:text="|₩${product.price}|">₩17,900</span>
+            </div>
+
+            <div class="info-row">
+                <span class="label">택배배송</span>
+                <span>₩4,000 <small>(₩30,000 이상 구매 시 무료)</small></span>
+            </div>
+
+            <div class="info-row quantity">
+                <span class="label">상품수량</span>
+                <div class="quantity-controls">
+                    <button type="button" onclick="changeQuantity(-1)">-</button>
+                    <input id="quantity" type="text" value="1" readonly>
+                    <button type="button" onclick="changeQuantity(1)">+</button>
+                </div>
+            </div>
+
+            <div class="total">
+                총 상품금액:
+                <span id="total-price"
+                      th:data-price="${product.price}"
+                      th:text="|₩${product.price}|">₩17,900</span>
+            </div>
+
+            <div class="actions">
+                <button class="buy-now" onclick="location.href='/order/ready'">바로구매</button>
+                <!-- data-id 속성 활용 -->
+                <button class="cart" th:data-id="${product.id}" onclick="addToCart(this.dataset.id)">장바구니</button>
+                <button class="wishlist" onclick="location.href='/order/ready'">위시리스트</button>
+            </div>
+        </div>
     </div>
-  </div>
 </main>
 
-
 <th:block th:replace="~{_fragments/_footer}" />
+
+<script>
+    // 수량 변경
+    function changeQuantity(delta) {
+        const qtyInput = document.getElementById("quantity");
+        let qty = parseInt(qtyInput.value) + delta;
+        if (qty < 1) qty = 1;
+        qtyInput.value = qty;
+
+        // 총 상품금액 업데이트
+        const price = parseInt(document.getElementById("total-price").dataset.price);
+        document.getElementById("total-price").innerText = "₩" + (price * qty).toLocaleString();
+    }
+
+    // 장바구니 추가
+    async function addToCart(productId) {
+        const quantity = document.getElementById("quantity").value;
+
+        try {
+            const res = await fetch(`/api/cart/add?productId=${productId}&quantity=${quantity}`, {
+                method: "POST",
+                credentials: "include"
+            });
+
+            if (!res.ok) {
+                throw new Error(await res.text());
+            }
+
+            const message = await res.text();
+            alert(message);
+
+        } catch (err) {
+            alert("장바구니 담기 실패: " + err.message);
+        }
+    }
+</script>
 </body>
 </html>

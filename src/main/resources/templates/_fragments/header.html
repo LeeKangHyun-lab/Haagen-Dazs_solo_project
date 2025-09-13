@@ -10,11 +10,21 @@
                 <a href="https://pf.kakao.com/_AYskxb"><i class="fa-regular fa-comment-dots"></i></a>
             </div>
             <div class="top-right">
-                <a href="/account/login">로그인</a>
-                <a href="/account/join">회원가입</a>
-                <a href="#">장바구니</a>
-                <a href="#">주문/배송조회</a>
+                <th:block th:if="${session.memberInfo == null}">
+                    <a th:href="@{/account/login}">로그인</a>
+                    <a th:href="@{/account/join}">회원가입</a>
+                </th:block>
+
+                <th:block th:if="${session.memberInfo != null}">
+                    <a href="#" id="logout-btn">로그아웃</a>
+                    <a th:href="@{/account}">마이페이지</a>
+                </th:block>
+
+                <a th:href="@{/cart}">장바구니</a>
+                <a th:href="@{order/ready}">주문/배송조회</a>
             </div>
+
+
         </div>
     </div>
 
@@ -43,31 +53,31 @@
                 <div class="mega-content">
                     <div class="mega-column">
                         <h4>추천제품</h4>
-                        <a href="/recommended">전체보기</a>
-                        <a href="/recommended_single">단독구성</a>
-                        <a href="/recommended_gift">선물추천</a>
+                        <a th:href="@{/recommended}">전체보기</a>
+                        <a th:href="@{/recommended_single}">단독구성</a>
+                        <a th:href="@{/recommended_gift}">선물추천</a>
                     </div>
                     <div class="mega-column">
                         <h4>모든제품</h4>
-                        <a href="/products">전체보기</a>
-                        <a href="/products/파인트">파인트</a>
-                        <a href="/products/미니컵">미니컵</a>
-                        <a href="/products/스틱바">스틱바&샌드</a>
-                        <a href="/products/쿼터">쿼터</a>
-                        <a href="/products/케이크">케이크&디저트</a>
-                        <a href="/products/굿즈">굿즈</a>
+                        <a th:href="@{/products}">전체보기</a>
+                        <a th:href="@{/products/파인트}">파인트</a>
+                        <a th:href="@{/products/미니컵}">미니컵</a>
+                        <a th:href="@{/products/스틱바}">스틱바&샌드</a>
+                        <a th:href="@{/products/쿼터}">쿼터</a>
+                        <a th:href="@{/products/케이크}">케이크&디저트</a>
+                        <a th:href="@{/products/굿즈}">굿즈</a>
                     </div>
                     <div class="mega-column">
                         <h4>멤버십</h4>
-                        <a href="/membership">혜택안내</a>
+                        <a th:href="@{/membership}">혜택안내</a>
                     </div>
                     <div class="mega-column">
                         <h4>브랜드</h4>
-                        <a href="/brand">브랜드 스토리</a>
+                        <a th:href="@{/brand}">브랜드 스토리</a>
                     </div>
                     <div class="mega-column">
                         <h4>외식사업 고객용(B2B)</h4>
-                        <a href="/b2b">B2B 안내</a>
+                        <a th:href="@{/b2b}">B2B 안내</a>
                     </div>
                 </div>
             </div>
@@ -144,9 +154,23 @@
 
     });
 
-
-
-
     });
 
+    document.addEventListener("DOMContentLoaded", () => {
+        const logoutBtn = document.getElementById("logout-btn");
+        if (logoutBtn) {
+            logoutBtn.addEventListener("click", async (e) => {
+                e.preventDefault();
+                try {
+                    // 서버에 로그아웃 요청
+                    await fetch("/api/account/logout", { method: "GET" });
+                } catch (err) {
+                    console.error("로그아웃 실패:", err);
+                }
+                // 알림 띄우고 홈으로 이동
+                alert("로그아웃되었습니다.");
+                window.location.href = "/";
+            });
+        }
+    });
 </script>

@@ -39,15 +39,17 @@ public class AccountRestController {
 
         Member input = new Member();
         input.setUserId(userId);
-
         if (memberInfo != null) {
             input.setId(memberInfo.getId());
         }
 
         memberService.isUniqueUserId(input);
 
-        return null;
+        Map<String,Object> result = new LinkedHashMap<>();
+        result.put("result", "OK");
+        return result;
     }
+
 
     @GetMapping("/api/account/email_unique_check")
     public Map<String, Object> EmailUniqueCheck(@RequestParam("email") String email,
@@ -66,7 +68,10 @@ public class AccountRestController {
 
         memberService.isUniqueEmail(input);
 
-        return null;
+        Map<String,Object> result = new LinkedHashMap<>();
+        result.put("success", true);
+        return result;
+
     }
 
     @PostMapping("/api/account/join")
@@ -133,7 +138,10 @@ public class AccountRestController {
         memberService.join(member);
 
 /** 5) 결과 반환 */
-        return null;
+        Map<String,Object> result = new LinkedHashMap<>();
+        result.put("success", true);
+        return result;
+
     }
 
 
@@ -158,14 +166,20 @@ public class AccountRestController {
         //memberinfo는 개발자가 원하는 이름으로 지정하는 문자옇
         request.getSession().setAttribute("memberInfo", output);
 
-        return null;
+        Map<String,Object> result = new LinkedHashMap<>();
+        result.put("success", true);
+        return result;
+
     }
 
     @GetMapping("/api/account/logout")
     public Map<String, Object> logout(HttpServletRequest request) {
         HttpSession session = request.getSession();
         session.invalidate();
-        return null;
+        Map<String,Object> result = new LinkedHashMap<>();
+        result.put("success", true);
+        return result;
+
     }
 
     @PostMapping("/api/account/find_id")
@@ -215,7 +229,10 @@ public class AccountRestController {
         String subject = userId + "님의 비밀번호가 재설정되었습니다.";
         mailHelper.sendMail(email, subject, template);
 
-        return null;
+        Map<String,Object> result = new LinkedHashMap<>();
+        result.put("success", true);
+        return result;
+
 
     }
 
@@ -337,7 +354,10 @@ public class AccountRestController {
 
         request.getSession().setAttribute("memberInfo", output);
 
-        return null;
+        Map<String,Object> result = new LinkedHashMap<>();
+        result.put("success", true);
+        return result;
+
     }
 
     @DeleteMapping("/api/account/out")
@@ -352,7 +372,10 @@ public class AccountRestController {
         HttpSession session = request.getSession();
         session.invalidate();
 
-        return null;
+        Map<String,Object> result = new LinkedHashMap<>();
+        result.put("success", true);
+        return result;
+
 
     }
 

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="~{_fragments/_head :: my-head('주문 준비중')}" />
+    <link rel="stylesheet" th:href="@{/assets/css/main.css}" />
+    <link rel="stylesheet" th:href="@{/assets/css/order.css}" />
+</head>
+<body>
+<th:block th:replace="~{_fragments/header}" />
+
+<main>
+    <div class="order-ready">
+        <h2>주문하기</h2>
+        <p>해당 기능은 현재 <strong>준비중</strong>입니다.</p>
+        <p>빠른 시일 내에 만나보실 수 있도록 하겠습니다 :)</p>
+
+        <div class="actions">
+            <a th:href="@{/}" class="btn-home">홈으로</a>
+            <a th:href="@{/cart}" class="btn-cart">장바구니로</a>
+        </div>
+    </div>
+</main>
+
+<th:block th:replace="~{_fragments/_footer}" />
+</body>
+</html>

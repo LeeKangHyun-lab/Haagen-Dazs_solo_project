@@ -1,5 +1,6 @@
 package kr.khlee.icecreamhaggendazs.controllers.account;
 
+import jakarta.servlet.http.HttpServletRequest;
 import kr.khlee.icecreamhaggendazs.helpers.SessionCheckHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +29,12 @@ public class AccountController {
     @SessionCheckHelper(enable = false)
     public String login(){
         return "account/login";
+    }
+
+    @GetMapping("/account/logout")
+    public String logout(HttpServletRequest request) {
+        request.getSession().invalidate();
+        return "redirect:/"; // 홈으로 이동
     }
 
     @GetMapping("/account/find_id")
