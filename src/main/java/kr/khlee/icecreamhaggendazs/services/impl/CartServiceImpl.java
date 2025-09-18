@@ -5,6 +5,7 @@ import kr.khlee.icecreamhaggendazs.models.Cart;
 import kr.khlee.icecreamhaggendazs.services.CartService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -15,6 +16,7 @@ public class CartServiceImpl implements CartService {
     private final CartMapper cartMapper;
 
     @Override
+    @Transactional
     public void addToCart(String userId, int productId, int quantity) {
 
         if (userId == null || userId.trim().isEmpty()) {
@@ -51,6 +53,7 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
+    @Transactional
     public void updateQuantity(Long id, int quantity) {
         if (id == null || id <= 0) {
             throw new IllegalArgumentException("잘못된 장바구니 ID입니다.");
@@ -62,6 +65,7 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
+    @Transactional
     public void deleteItem(Long id) {
         if (id == null || id <= 0) {
             throw new IllegalArgumentException("잘못된 장바구니 ID입니다.");

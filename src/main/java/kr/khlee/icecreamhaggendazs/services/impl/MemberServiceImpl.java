@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.ExceptionDepthComparator;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -34,6 +35,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    @Transactional
     public Member join(Member input) throws Exception{
         Member temp1 = new Member();
         temp1.setUserId(input.getUserId());
@@ -52,6 +54,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    @Transactional
     public Member login(Member input) throws Exception{
         Member output = memberMapper.login(input);
 
@@ -74,6 +77,8 @@ public class MemberServiceImpl implements MemberService {
         return output;
     }
 
+    @Override
+    @Transactional
     public void resetPw(Member input) throws Exception{
         if(memberMapper.resetPw(input) == 0){
             throw new Exception("아이디와 이메일을 확인하세요.");
@@ -81,6 +86,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    @Transactional
     public Member update(Member input) throws Exception{
         if(memberMapper.update(input) == 0){
             throw new Exception("현재 비밀번호를 확인하세요.");
@@ -90,6 +96,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    @Transactional
     public void out(Member input) throws Exception{
         if(memberMapper.out(input) == 0){
             throw new ServiceNoResultException("회원 탈퇴에 실패했습니다. 비밀번호가 잘못되었거나 가입되어 있지 않은 회원입니다.");
@@ -97,6 +104,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    @Transactional
     public List<Member> processOutMembers() throws Exception{
         List<Member> output = null;
 
