@@ -9,6 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 @Slf4j
 @SpringBootTest
 public class ProductServiceTests {
@@ -17,89 +19,111 @@ public class ProductServiceTests {
     private ProductService productService;
 
     @Test
-    void selectRecommandation() throws Exception{
+    void selectRecommandation() {
         List<Product> products = productService.SelectRecommandation();
-
+        assertNotNull(products);
+        assertFalse(products.isEmpty(), "추천 상품은 비어 있지 않아야 합니다.");
         log.info(products.toString());
     }
 
     @Test
-    void selectAllProducts() throws Exception{
-        List<Product> products = productService.SelectAllProducts( 0, 20);
-
-        log.info(products.toString());
+    void selectAllProducts() {
+        List<Product> products = productService.SelectAllProducts(0, 20);
+        assertNotNull(products);
+        assertTrue(products.size() <= 20, "최대 20개까지만 조회되어야 합니다.");
     }
 
     @Test
-    void selectById() throws Exception{
+    void selectById_valid() {
         Product product = productService.SelectById(1);
-
-        log.info(product.toString());
+        assertNotNull(product);
+        assertEquals(1, product.getId(), "ID가 1인 상품이어야 합니다.");
     }
 
     @Test
-    void selectCake() throws Exception{
-        List<Product> product = productService.SelectGift();
-
-        log.info(product.toString());
+    void selectById_invalid() {
+        assertThrows(IllegalArgumentException.class, () -> productService.SelectById(-1));
+        assertThrows(IllegalArgumentException.class, () -> productService.SelectById(99999)); // 없는 ID
     }
 
     @Test
-    void selectCakeAll() throws Exception{
-        List<Product> product = productService.SelectGiftAll(0, 20);
-
-        log.info(product.toString());
+    void selectGift() {
+        List<Product> products = productService.SelectGift();
+        assertNotNull(products);
+        assertFalse(products.isEmpty());
     }
 
     @Test
-    void selectSingle() throws Exception{
-        List<Product> product = productService.SelectSingle();
-
-        log.info(product.toString());
-    }
-    @Test
-    void selectSingleAll() throws Exception{
-        List<Product> product = productService.SelectSingleAll(0, 20);
-
-        log.info(product.toString());
+    void selectGiftAll() {
+        List<Product> products = productService.SelectGiftAll(0, 20);
+        assertNotNull(products);
     }
 
     @Test
-    void selectbyCategory() throws Exception{
-        List<Product> product = productService.SelectByCategory("파인트", 0, 20);
-
-        log.info(product.toString());
+    void selectSingle() {
+        List<Product> products = productService.SelectSingle();
+        assertNotNull(products);
+        assertFalse(products.isEmpty());
     }
 
     @Test
-    void getProductCount() throws Exception{
-        String input = "파인트";
-
-        int count = productService.getProductCount(input);
-
-        log.info(String.valueOf(count));
+    void selectSingleAll() {
+        List<Product> products = productService.SelectSingleAll(0, 20);
+        assertNotNull(products);
     }
 
     @Test
-    void getAllCategories() throws Exception{
+    void selectByCategory_valid() {
+        List<Product> products = productService.SelectByCategory("파인트", 0, 20);
+        assertNotNull(products);
+        assertFalse(products.isEmpty());
+        assertEquals("파인트", products.get(0).getCategory());
+    }
+
+    @Test
+    void selectByCategory_invalid() {
+        assertThrows(IllegalArgumentException.class,
+                () -> productService.SelectByCategory("", 0, 20));
+        assertThrows(IllegalArgumentException.class,
+                () -> productService.SelectByCategory("파인트", -1, 20));
+    }
+
+    @Test
+    void getProductCount() throws Exception {
+        int count = productService.getProductCount("파인트");
+        assertTrue(count >= 0, "상품 개수는 0 이상이어야 합니다.");
+    }
+
+    @Test
+    void getAllCategories() {
         List<Product> categories = productService.getAllCategories();
-
-        log.info(categories.toString());
+        assertNotNull(categories);
+        assertFalse(categories.isEmpty());
     }
 
     @Test
-    void SearchProducts() throws Exception{
-        String keyword = "케이크";
-        log.info(productService.SearchProducts(keyword).toString());
+    void searchProducts_valid() {
+        List<Product> products = productService.SearchProducts("케이크");
+        assertNotNull(products);
+        assertTrue(products.stream().anyMatch(p -> p.getName().contains("케이크")));
     }
 
     @Test
-    void getAllSingleCount(){
-        System.out.println(productService.getAllSingleCount());
+    void searchProducts_emptyKeyword() {
+        List<Product> products = productService.SearchProducts("");
+        assertNotNull(products);
+        assertTrue(products.isEmpty(), "검색어가 없으면 빈 리스트를 반환해야 합니다.");
     }
 
     @Test
-    void getAllGiftCount(){
-        System.out.println(productService.getAllGiftCount());
+    void getAllSingleCount() {
+        int count = productService.getAllSingleCount();
+        assertTrue(count >= 0);
+    }
+
+    @Test
+    void getAllGiftCount() {
+        int count = productService.getAllGiftCount();
+        assertTrue(count >= 0);
     }
 }

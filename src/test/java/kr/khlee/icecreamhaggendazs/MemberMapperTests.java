@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
 @SpringBootTest
@@ -18,20 +19,20 @@ public class MemberMapperTests {
     private MemberMapper memberMapper;
 
     @Test
-    void selectCount(){
+    void selectCount() {
         Member input = new Member();
         input.setUserId("hellouser");
         int output = memberMapper.selectCount(input);
-        log.debug("output:{}",output);
+        assertTrue(output >= 0, "중복체크 결과는 0 이상이어야 합니다.");
     }
 
     @Test
-    void insert(){
-        Member input=new Member();
-        input.setUserId("testUser");
+    void insert() {
+        Member input = new Member();
+        input.setUserId("testUser100");
         input.setUserPw("testPw123");
         input.setUserName("테스트유저");
-        input.setEmail("testuser@example.com");
+        input.setEmail("testuser100@example.com");
         input.setPhone("010-1234-5678");
         input.setBirthday("1990-01-01");
         input.setGender("M");
@@ -40,63 +41,74 @@ public class MemberMapperTests {
         input.setAddr2("테스트동 101호");
         input.setPhoto(null);
 
-        int insertedId = memberMapper.insert(input);
-        log.debug("insertedId:{}",insertedId);
+        int result = memberMapper.insert(input);
+        assertEquals(1, result, "insert는 1개 행이 영향을 주어야 합니다.");
+        assertNotNull(input.getId(), "insert 후에는 PK id가 채워져야 합니다.");
     }
 
     @Test
-    void selectItem(){
-        Member input=new Member();
+    void selectItem() {
+        Member input = new Member();
         input.setId(1);
 
         Member output = memberMapper.selectItem(input);
-        log.debug("output:{}",output);
+        assertNotNull(output, "조회 결과가 null이면 안 됩니다.");
+        assertEquals(1, output.getId());
     }
 
     @Test
-    void login(){
-        Member input=new Member();
-        input.setUserId("test1");
-        input.setUserPw("1234");
+    void login_success() {
+        Member input = new Member();
+        input.setUserId("test2");
+        input.setUserPw("123");
 
         Member output = memberMapper.login(input);
-        log.debug("output:{}",output);
+        assertNotNull(output, "올바른 아이디/비밀번호로 로그인해야 합니다.");
     }
 
     @Test
-    void updateLoginDate(){
-        Member input=new Member();
-        input.setId(5);
+    void login_fail() {
+        Member input = new Member();
+        input.setUserId("test1");
+        input.setUserPw("wrongPw");
 
-        int output = memberMapper.updateLoginDate(input);
-        log.debug("output:{}",output);
+        Member output = memberMapper.login(input);
+        assertNull(output, "잘못된 비밀번호로는 로그인할 수 없어야 합니다.");
     }
 
     @Test
-    void findId(){
-        Member input=new Member();
-        input.setUserName("테스트");
-        input.setEmail("test1@naver.com");
+    void updateLoginDate() {
+        Member input = new Member();
+        input.setId(1);
+        int result = memberMapper.updateLoginDate(input);
+        assertTrue(result >= 0, "로그인 날짜 업데이트 결과는 0 이상이어야 합니다.");
+    }
+
+    @Test
+    void findId() {
+        Member input = new Member();
+        input.setUserName("테스트유저");
+        input.setEmail("testuser100@example.com");
 
         Member output = memberMapper.findId(input);
-        log.debug("output:{}",output);
+        assertNotNull(output, "이름/이메일이 일치하면 아이디가 나와야 합니다.");
     }
 
     @Test
-    void resetPassword(){
-       Member input = new Member();
-       input.setUserId("test1");
-       input.setEmail("ka09068@gmail.com");
-       input.setUserPw("123");
-
-       int output = memberMapper.resetPw(input);
-       log.debug("output:{}",output);
-    }
-
-    @Test
-    void editMember(){
+    void resetPassword_fail() {
         Member input = new Member();
-        input.setId(4);
+        input.setUserId("noUser");
+        input.setEmail("wrong@example.com");
+        input.setUserPw("newPw");
+
+        int result = memberMapper.resetPw(input);
+        assertEquals(0, result, "존재하지 않는 유저는 비밀번호 변경 불가해야 합니다.");
+    }
+
+    @Test
+    void updateMember() {
+        Member input = new Member();
+        input.setId(1);
         input.setUserName("수정된 유저");
         input.setEmail("test1@naver.com");
         input.setPhone("01098765432");
@@ -110,30 +122,29 @@ public class MemberMapperTests {
         input.setUserPw("1234");
         input.setNewUserPw("123456");
 
-        int output = memberMapper.update(input);
-        log.debug("output:{}", output);
+        int result = memberMapper.update(input);
+        assertTrue(result >= 0, "업데이트 결과는 0 이상이어야 합니다.");
     }
 
     @Test
-    void outMember(){
+    void outMember_fail() {
         Member input = new Member();
-        input.setId(5);
-        input.setUserPw("1234");
+        input.setId(9999); // 없는 유저
+        input.setUserPw("wrong");
 
-        int output = memberMapper.out(input);
-        log.debug("output:{}", output);
+        int result = memberMapper.out(input);
+        assertEquals(0, result, "없는 유저/비밀번호 불일치 시 탈퇴 불가해야 합니다.");
     }
 
     @Test
-    void selectOutMember(){
+    void selectOutMember() {
         List<Member> output = memberMapper.selectOutMembersPhoto();
-        log.debug("output:{}",output);
+        assertNotNull(output);
     }
 
     @Test
-    void deleteOutMember(){
-        int output = memberMapper.deleteOutMembers();
-        log.debug("output:{}",output);
+    void deleteOutMember() {
+        int result = memberMapper.deleteOutMembers();
+        assertTrue(result >= 0, "삭제된 행 수는 0 이상이어야 합니다.");
     }
 }
-

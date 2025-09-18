@@ -11,7 +11,8 @@ public interface CartMapper {
     // 장바구니 담기
     @Insert("INSERT INTO cart (user_id, product_id, quantity) " +
             "VALUES (#{userId}, #{productId}, #{quantity})")
-    void insertCart(Cart cart);
+    @Options(useGeneratedKeys = true, keyProperty = "id") // 자동 생성 PK 매핑
+    int insertCart(Cart cart);
 
     // 사용자별 장바구니 조회 (상품 테이블 조인)
     @Select("SELECT c.id, c.user_id, c.product_id, c.quantity, " +
@@ -31,14 +32,13 @@ public interface CartMapper {
     })
     List<Cart> selectCartByUserId(String userId);
 
-
     // 수량 변경
     @Update("UPDATE cart SET quantity = #{quantity} WHERE id = #{id}")
-    void updateCartQuantity(@Param("id") Long id, @Param("quantity") int quantity);
+    int updateCartQuantity(@Param("id") Long id, @Param("quantity") int quantity);
 
     // 장바구니 삭제
     @Delete("DELETE FROM cart WHERE id = #{id}")
-    void deleteCart(Long id);
+    int deleteCart(Long id);
 
     // 특정 상품이 이미 장바구니에 있는지 확인
     @Select("SELECT * FROM cart WHERE user_id = #{userId} AND product_id = #{productId}")
