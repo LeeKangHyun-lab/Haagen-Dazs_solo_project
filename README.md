@@ -11,7 +11,7 @@ Haagen-Dazs_solo_project
 
 ## 💻 개발 환경
 - **IDE** : IntelliJ IDEA / VSCode
-- **언어** : Java 17 / Java 21
+- **언어** : Java 17
 - **프레임워크** : Spring Boot 3.x
 - **빌드 툴** : Gradle
 - **DB** : MySQL
